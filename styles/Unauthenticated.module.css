@@ -1,0 +1,27 @@
+.page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffffff;
+    gap: 10px;
+}
+
+.prompt {
+    font-size: xx-large;
+}
+
+.page button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: max-content;
+    padding: 10px;
+    height: 50px;
+    border-radius: 20px;
+    background: #63e06b;
+    /* box-shadow: 3px 3px 8px #cbc3d1 -3px -3px 3px white; */
+    transition: 0.5% linear;
+}
