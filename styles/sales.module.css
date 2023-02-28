@@ -5,7 +5,7 @@
     background-color: #51b3d4;
 }
 
-.box{
+.box {
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@
     gap: 10px;
 }
 
-.box input{
+.box input {
     padding: 15px;
     height: 40px;
     width: 300px;
@@ -22,24 +22,55 @@
     border-color: black;
 }
 
-.box button{
+.box button {
     margin: 20px;
-    height: 70px;
+    height: max-content;
+    padding: 10px;
     width: 70px;
-    border-radius: 50%;
-    background-color: rgb(153, 0, 255);
-    border-color: black;
+    border-radius: 20px;
+    background-color: #101010;
+    color: white;
+    border: 1px solid white;
 }
 
-.box button{
+.box button {
     cursor: pointer;
 }
 
-.box button:hover{
+.box button:hover {
     background-color: rgb(0, 170, 54);
 }
-    
-.h2{
+
+.h2 {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.buttons button {
+    height: max-content;
+    padding: 10px;
+    width: 70px;
+    border-radius: 20px;
+    background-color: #101010;
+    color: white;
+    border: 1px solid white;
+}
+
+
+
+
+.print-box {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    flex-direction: column;
 }

@@ -96,17 +96,17 @@ const purchase = () => {
     ]);
     // clear input after submit
     setLoading(false);
-    setInvoice;
-    setDate;
-    setPurchase;
-    setQuantity;
-    setPercentage;
-    setDirect;
-    setCaring;
-    setTransportation;
-    setTotal;
-    setSignature;
-    SetReference;
+    // setInvoice;
+    // setDate;
+    // setPurchase;
+    // setQuantity;
+    // setPercentage;
+    // setDirect;
+    // setCaring;
+    // setTransportation;
+    // setTotal;
+    // setSignature;
+    // SetReference;
   }
 
   if (isLoading) return <div>Loading ....</div>;
