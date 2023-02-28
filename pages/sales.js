@@ -17,7 +17,6 @@ const Document = React.forwardRef(
   (
     {
       invoice,
-      date,
       purchase,
       quantity,
       percentage,
@@ -37,7 +36,7 @@ const Document = React.forwardRef(
         <h1>Invoice</h1>
       </div>
       <p>{`invoice Number : ${invoice}`}</p>
-      <p>{`Date : ${date.now()}`}</p>
+      <p>{`Date : ${Date.now()}`}</p>
       <p>{`Purchase : ${Date.now()}`}</p>
       <p>purchase = {purchase}</p>
       <p>quantity = {quantity}</p>
@@ -66,11 +65,50 @@ function Sales() {
 
   const [isLoading, setLoading] = useState(false);
 
+  const [keyword, setKeyword] = useState('');
+  const [products, setProducts] = useState([]);
+  const [isCart, setIsCart] = useState(false);
+
+
+  const [items, setItems] = useState([]);
+
+
+
+  function checkIfAlreadyAddedToCart(product) {
+
+    let added = false;
+    for (let i = 0; i < items?.length; i++) {
+      console.log(items[i]);
+      console.log('prod', product);
+
+      if (items[i].ID === product?.ID) {
+        added = true;
+        break;
+      }
+    }
+    console.log(added);
+    return added;
+  }
+
 
   const documentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => documentRef.current,
   });
+
+
+  async function fetchProducts() {
+    let { data, error } = await supabase.from("product").select("*");
+    if (data) {
+      setProducts(data);
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts();
+
+  }, []);
+
 
 
   async function savePurchase() {
@@ -88,7 +126,6 @@ function Sales() {
     );
 
     setLoading(true);
-    // let { data, error } = await supabase.from('users').select('*').match({ username: username, password: password });
     await supabase.from("sales").insert([
       {
         invoice,
@@ -106,16 +143,22 @@ function Sales() {
     // clear input after submit
     setLoading(false);
     setType(PAGE_TYPES.PRINT);
-    // setInvoice;
-    // setSelling;
-    // setQuantity;
-    // setPercentage;
-    // setDirect;
-    // setCaring;
-    // setTransportation;
-    // setTotal;
-    // setSignature;
-    // SetReference;
+  }
+
+
+  function addToCart(product) {
+    let updatedItems = [...items, product];
+    setItems(updatedItems);
+  }
+
+  function removeFromCart(product) {
+    let updatedItems = [];
+
+    for(let i = 0 ; i < items?.length; i++){
+      if(items[i].ID === product?.ID) continue;
+      updatedItems.push(items[i]);
+    }
+    setItems(updatedItems);
   }
 
   if (isLoading) return <div>Loading ....</div>;
@@ -128,105 +171,83 @@ function Sales() {
         type === PAGE_TYPES.ADD &&
 
         <div className={styles["box"]}>
+          <div className={styles['select-container']}>
+            <div className={isCart ? styles['select'] : styles['active-select']} onClick={() => setIsCart(false)}>
+              Products
+            </div>
+            <div className={isCart ? styles['active-select'] : styles['select']} onClick={() => setIsCart(true)}>
+              Cart
+            </div>
+          </div>
           <h2 className={styles["h2"]}>Sales Invoice</h2>
+
           <input
-            value={invoice}
-            onChange={(e) => {
-              setInvoice(e.target.value);
-            }}
             type="text"
-            placeholder="Invoice"
-          ></input>
-          <input
-            value={selling}
-            onChange={(e) => {
-              setSelling(e.target.value);
-            }}
-            type="text"
-            placeholder="Selling Price"
-          ></input>
-          <input
-            value={quantity}
-            onChange={(e) => {
-              setQuantity(e.target.value);
-            }}
-            type="text"
-            placeholder="Quantity/unit"
-          ></input>
-          <input
-            value={percentage}
-            onChange={(e) => {
-              setPercentage(e.target.value);
-            }}
-            type="text"
-            placeholder="Percentage"
-          ></input>
-          <input
-            value={direct}
-            onChange={(e) => {
-              setDirect(e.target.value);
-            }}
-            type="text"
-            placeholder="Direct Discount"
-          ></input>
-          <input
-            value={caring}
-            onChange={(e) => {
-              setCaring(e.target.value);
-            }}
-            type="text"
-            placeholder="Caring Cost"
-          ></input>
-          <input
-            value={transportation}
-            onChange={(e) => {
-              setTransportation(e.target.value);
-            }}
-            type="text"
-            placeholder="Transportation"
-          ></input>
-          <input
-            value={total}
-            onChange={(e) => {
-              setTotal(e.target.value);
-            }}
-            type="text"
-            placeholder="Total Amount"
-          ></input>
-          <input
-            value={signature}
-            onChange={(e) => {
-              setSignature(e.target.value);
-            }}
-            type="text"
-            placeholder="Signature"
-          ></input>
-          <input
-            value={reference}
-            onChange={(e) => {
-              SetReference(e.target.value);
-            }}
-            type="text"
-            placeholder="Reference"
-          ></input>
-          <button onClick={savePurchase}>Add</button>
+            placeholder="search product"
+            onChange={(e) => { setKeyword(e.target.value) }}
+          />
+
+          {
+            !isCart &&
+            products?.filter(function (element) {
+              // if (!keyword || keyword === '') return null;
+              // else 
+              return element?.product?.toLowerCase().includes(keyword?.toLowerCase());
+
+            }).map((product, index) => {
+              return (
+                <div className={styles['product']}>
+                  {/* {JSON.stringify(product)} */}
+                  <h1> {`product Name : ${product.product}`}</h1>
+                  <h2> {`Selling Pricec: ${product.selling} BDT`}</h2>
+                  <h3> {`Category : ${product.category}`}</h3>
+                  <p> {`Sub category : ${product.subcategory}`}</p>
+                  <button onClick={() => {
+                    checkIfAlreadyAddedToCart(product) ? removeFromCart(product) : addToCart(product)
+                  }}>
+                    {
+                      checkIfAlreadyAddedToCart(product) ?
+                        "remove from cart" : "add to cart"
+                    }
+                  </button>
+
+                </div>
+              )
+
+            })
+          }
+
+          {
+            isCart &&
+            <div>
+
+              {JSON.stringify(items)}
+
+
+              <button onClick={savePurchase}>Create</button>
+            </div>
+          }
+
+
+
+
         </div>
       }
 
       {type === PAGE_TYPES.PRINT && (
         <div className={styles["print-box"]}>
-          <Document 
-          invoice={invoice} 
-          quantity={quantity}
-          percentage={percentage}
-          direct={direct}
-          caring={caring}
-          transportation={transportation}
-          total={total}
-          signature={signature}
-          reference={reference}
-          
-          ref={documentRef} />
+          <Document
+            invoice={invoice}
+            quantity={quantity}
+            percentage={percentage}
+            direct={direct}
+            caring={caring}
+            transportation={transportation}
+            total={total}
+            signature={signature}
+            reference={reference}
+
+            ref={documentRef} />
 
           <div className={styles["buttons"]}>
             <button onClick={() => { setType(PAGE_TYPES.ADD) }} > back </button>

@@ -2,22 +2,25 @@
     height: 100vh;
     width: 100vw;
     display: flex;
-    background-color: #51b3d4;
+    background-color: #1C1C1C;
 }
 
 .box {
     width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    gap: 10px;
+    padding: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
 }
 
 .box input {
     padding: 15px;
     height: 40px;
     width: 300px;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 10px;
     border-color: black;
 }
@@ -31,19 +34,19 @@
     background-color: #101010;
     color: white;
     border: 1px solid white;
-}
-
-.box button {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: max-content;
     cursor: pointer;
 }
 
 .box button:hover {
-    background-color: rgb(0, 170, 54);
+    background-color: #00aa36;
 }
 
 .h2 {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    text-align: center;
+    color: white;
 }
 
 .buttons {
@@ -73,4 +76,35 @@
     align-items: center;
     padding: 30px;
     flex-direction: column;
+}
+
+.product {
+    background-color: #303030;
+    padding: 20px;
+    color: #d4d4d4;
+    border-radius: 30px;
+}
+
+.product button {
+    margin-top: 10px;
+}
+
+.select-container {
+    display: flex;
+    background-color: #101010;
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content;
+    color: white;
+    gap: 10px;
+}
+
+.select {
+    padding: 20px;
+    cursor: pointer;
+}
+.active-select {
+    background-color: #00aa36;
+    padding: 20px;
+    cursor: pointer;
 }

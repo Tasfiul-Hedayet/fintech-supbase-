@@ -214,7 +214,6 @@ const Product = () => {
   
   async function updatedProduct(index) {
     setLoading(true);
-    console.log(updatedProducts[index]);
     await supabase
       .from("product")
       .update({
@@ -234,7 +233,6 @@ const Product = () => {
 
 
   async function deleteProduct(index) {
-    console.log('ohh sex fuck yeah!');
     setLoading(true);
     console.log(updatedProducts[index]);
     await supabase
