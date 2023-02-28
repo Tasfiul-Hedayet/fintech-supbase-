@@ -44,10 +44,12 @@ const Document = React.forwardRef(
     </div>
   )
 );
+Document.displayName = 'Document';
 
 
 
-const Sales = () => {
+
+function Sales() {
 
   const [type, setType] = useState(PAGE_TYPES.ADD);
 

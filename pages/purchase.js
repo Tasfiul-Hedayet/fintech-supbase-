@@ -39,8 +39,10 @@ const Document = React.forwardRef(
     </div>
   )
 );
+Document.displayName = 'Document';
 
-const Purchase = () => {
+
+function Purchase () {
   const [type, setType] = useState(PAGE_TYPES.ADD);
 
   const [invoice, setInvoice] = useState("");
