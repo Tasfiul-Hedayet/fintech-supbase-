@@ -16,16 +16,7 @@ const PAGE_TYPES = {
 const Document = React.forwardRef(
   (
     {
-      invoice,
-      purchase,
-      quantity,
-      percentage,
-      direct,
-      caring,
-      transportation,
-      total,
-      signature,
-      reference,
+
 
     },
     ref
@@ -35,11 +26,7 @@ const Document = React.forwardRef(
       <div className={styles['document-title']}>
         <h1>Invoice</h1>
       </div>
-      <p>{`invoice Number : ${invoice}`}</p>
-      <p>{`Date : ${Date.now()}`}</p>
-      <p>{`Purchase : ${Date.now()}`}</p>
-      <p>purchase = {purchase}</p>
-      <p>quantity = {quantity}</p>
+      <p>{`invoice Number : ${"aaa"}`}</p>
     </div>
   )
 );
@@ -56,9 +43,6 @@ function Sales() {
   const [quantity, setQuantity] = useState("");
   const [selling, setSelling] = useState("");
   const [percentage, setPercentage] = useState("");
-  const [direct, setDirect] = useState("");
-  const [caring, setCaring] = useState("");
-  const [transportation, setTransportation] = useState("");
   const [total, setTotal] = useState("");
   const [signature, setSignature] = useState("");
   const [reference, SetReference] = useState("");
@@ -71,6 +55,16 @@ function Sales() {
 
 
   const [items, setItems] = useState([]);
+  const [quantities, setQuantities] = useState([]);
+
+  const [discount, setDiscount] = useState(0);
+  const [caring, setCaring] = useState(0);
+  const [transportation, setTransportation] = useState(0);
+
+
+  function is_numeric(str) {
+    return /^\d+$/.test(str);
+  }
 
 
 
@@ -97,6 +91,20 @@ function Sales() {
   });
 
 
+  function getQuantityOfProduct(product) {
+    let quantity = 0;
+
+    for (let i = 0; i < quantities?.length; i++) {
+      if (quantities[i].ID === product.ID) {
+        quantity = quantities[i].quantity;
+        break;
+      }
+    }
+
+    return quantity;
+  }
+
+
   async function fetchProducts() {
     let { data, error } = await supabase.from("product").select("*");
     if (data) {
@@ -106,49 +114,145 @@ function Sales() {
 
   useEffect(() => {
     fetchProducts();
-
   }, []);
 
 
+  // useEffect(()=>{
 
+
+
+
+  // }, [items]);
+
+
+
+  // save in database later !!
   async function savePurchase() {
-    console.log(
-      invoice,
-      quantity,
-      selling,
-      percentage,
-      direct,
-      caring,
-      transportation,
-      total,
-      signature,
-      reference
-    );
 
-    setLoading(true);
-    await supabase.from("sales").insert([
-      {
-        invoice,
-        selling,
-        quantity,
-        percentage,
-        direct,
-        caring,
-        transportation,
-        total,
-        signature,
-        reference,
-      },
-    ]);
+    // setLoading(true);
+    // await supabase.from("sales").insert([
+    //   {
+    //     invoice,
+    //     selling,
+    //     quantity,
+    //     percentage,
+    //     direct,
+    //     caring,
+    //     transportation,
+    //     total,
+    //     signature,
+    //     reference,
+    //   },
+    // ]);
     // clear input after submit
     setLoading(false);
     setType(PAGE_TYPES.PRINT);
   }
 
 
+
+  function calculateSubTotalOfCart() {
+    let subTotal = 0.0;
+    for (let i = 0; i < items?.length; i++) {
+      subTotal += getProductPrice(items[i]);
+    }
+    return subTotal;
+  }
+
+
+  function calculateTotalOfCart() {
+    let subTotal = calculateSubTotalOfCart();
+    subTotal -= caring;
+    subTotal -= transportation;
+    subTotal -= discount;
+    return subTotal;
+  }
+
+
+
+
+  function incrementQuantityToProduct(product) {
+    let updatedQuantities = [];
+
+    for (let i = 0; i < quantities?.length; i++) {
+      if (quantities[i].ID === product.ID) {
+
+        updatedQuantities.push({
+          ID: quantities[i].ID,
+          quantity: quantities[i].quantity + 1
+        })
+      }
+      else {
+        updatedQuantities.push(quantities[i]);
+      }
+    }
+
+    setQuantities(updatedQuantities);
+
+  }
+
+
+  function decrementQuantityToProduct(product) {
+    let updatedQuantities = [];
+
+    for (let i = 0; i < quantities?.length; i++) {
+      if (quantities[i].ID === product.ID) {
+
+
+        let updatedQuantityValue = quantities[i].quantity - 1;
+
+        if (updatedQuantityValue < 1) {
+          removeFromCart(product);
+          alert('less than 1');
+        }
+        else {
+          updatedQuantities.push({
+            ID: quantities[i].ID,
+            quantity: updatedQuantityValue,
+          })
+        }
+
+      }
+      else {
+        updatedQuantities.push(quantities[i]);
+      }
+    }
+
+    setQuantities(updatedQuantities);
+  }
+
+
+  function removeQuantityOfProduct(product) {
+
+    let updatedQuantities = [];
+
+    for (let i = 0; i < quantities?.length; i++) {
+      if (quantities[i].ID === product.ID) {
+        continue;
+      }
+      else {
+        updatedQuantities.push(quantities[i]);
+      }
+    }
+
+    setQuantities(updatedQuantities);
+
+  }
+
+  function getProductPrice(product) {
+
+    let quantity = getQuantityOfProduct(product);
+    let sellingPrice = parseFloat(product.selling);
+    let price = quantity * sellingPrice;
+    return price;
+
+  }
+
+
   function addToCart(product) {
     let updatedItems = [...items, product];
     setItems(updatedItems);
+    setQuantities([...quantities, { ID: product.ID, quantity: 1 }])
   }
 
   function removeFromCart(product) {
@@ -159,6 +263,7 @@ function Sales() {
       updatedItems.push(items[i]);
     }
     setItems(updatedItems);
+    removeQuantityOfProduct(product);
   }
 
   if (isLoading) return <div>Loading ....</div>;
@@ -181,11 +286,14 @@ function Sales() {
           </div>
           <h2 className={styles["h2"]}>Sales Invoice</h2>
 
-          <input
-            type="text"
-            placeholder="search product"
-            onChange={(e) => { setKeyword(e.target.value) }}
-          />
+          {
+            !isCart &&
+            <input
+              type="text"
+              placeholder="search product"
+              onChange={(e) => { setKeyword(e.target.value) }}
+            />
+          }
 
           {
             !isCart &&
@@ -210,7 +318,6 @@ function Sales() {
                         "remove from cart" : "add to cart"
                     }
                   </button>
-
                 </div>
               )
 
@@ -220,14 +327,93 @@ function Sales() {
           {
             isCart &&
             <div>
+              {
+                items?.map((item, key) => {
+                  return (
+                    <div key={key} className={styles['item']}>
 
-              {JSON.stringify(items)}
+                      <div className={styles['item-top']}>
+                        <p className={styles['item-name']}>
+                          {item.product}
+                        </p>
+                        <p className={styles['item-price']}>
+                          {` ${getQuantityOfProduct(item)} x ${item.selling} = ${getProductPrice(item)} BDT`}
+                        </p>
+                        <div className={styles['remove-item-button']}
+                          onClick={() => { removeFromCart(item) }}
+                        >
+                        </div>
+                      </div>
+
+                      <div className={styles['item-bottom']}>
 
 
+                        <div className={styles['decrement']}
+                          onClick={() => { decrementQuantityToProduct(item) }}
+                        >
+                        </div>
+
+
+                        <div className={styles['item-quantity']}>
+                          {getQuantityOfProduct(item)}
+                        </div>
+
+
+                        <div className={styles['increment']}
+                          onClick={() => { incrementQuantityToProduct(item) }}
+                        >
+                        </div>
+                      </div>
+
+                    </div>
+                  )
+                })
+              }
+
+
+
+              <div>
+                <div>
+                  <p>{`subTotal : ${calculateSubTotalOfCart()}`}</p>
+                </div>
+                <div>
+                  <p>Caring Cost : </p>
+                  <input type="text" placeholder="caring cost" value={caring} onChange={(e) => {
+                    if (e.target.value === '') setCaring(0);
+                    else if (is_numeric(e.target.value))
+                      setCaring(parseFloat(e.target.value));
+                  }} />
+                </div>
+
+                <div>
+                  <p>transportation Cost : </p>
+                  <input type="text" placeholder="transportation cost" value={transportation} onChange={(e) => {
+                    if (e.target.value === '') setTransportation(0);
+                    else if (is_numeric(e.target.value))
+                      setTransportation(parseFloat(e.target.value));
+                  }} />
+                </div>
+
+
+                <div>
+                  <p>discount Cost : </p>
+                  <input type="text" placeholder="discount cost" value={discount} onChange={(e) => {
+                    if (e.target.value === '') setDiscount(0);
+                    else if (is_numeric(e.target.value))
+                      setDiscount(parseFloat(e.target.value));
+                  }} />
+                </div>
+
+                <div>
+                  <p>{`Total : ${calculateTotalOfCart()}`}</p>
+                </div>
+
+
+              </div>
 
               {
                 items?.length ?
-                  <button onClick={savePurchase}>Create</button>
+                  <button onClick={savePurchase}>Next</button>
                   :
                   <h3>Empty Cart!</h3>
               }
@@ -243,16 +429,6 @@ function Sales() {
       {type === PAGE_TYPES.PRINT && (
         <div className={styles["print-box"]}>
           <Document
-            invoice={invoice}
-            quantity={quantity}
-            percentage={percentage}
-            direct={direct}
-            caring={caring}
-            transportation={transportation}
-            total={total}
-            signature={signature}
-            reference={reference}
-
             ref={documentRef} />
 
           <div className={styles["buttons"]}>
