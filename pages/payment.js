@@ -64,7 +64,7 @@ const Payment = () => {
     <div className={styles["page"]}>
       <Sidebar />
       <div className={styles["box"]}>
-        <h2 className={styles["h2"]}>Supplier's Payment</h2>
+        <h2 className={styles["h2"]}>{"Supplier's Payment"}</h2>
         <input
           value={invoice}
           onChange={(e) => {
