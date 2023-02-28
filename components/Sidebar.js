@@ -20,16 +20,16 @@ const Sidebar = () => {
 
     if (!isToggled) {
         return (
-            <div onClick={() => { toggle() }} className={styles['open-sidebar']}>
-                Open
+            <div className={styles['open-sidebar']}>
+                <div className={styles['menu-open-button']} onClick={() => { toggle() }}>
+                </div>
             </div>
         )
     }
     else {
         return (
             <div className={styles['sidebar']}>
-                <div onClick={() => { toggle() }}>
-                    close
+                <div className={styles['menu-close-button']} onClick={() => { toggle() }}>
                 </div>
                 <div className={styles['title-link']}>
                     Company

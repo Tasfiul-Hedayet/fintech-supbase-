@@ -18,6 +18,30 @@
     color: white;
 }
 
+.menu-open-button {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    margin-bottom: 10px;
+    background: url('../public/menu-button.png');
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+.menu-close-button {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    margin-bottom: 10px;
+    background: url('../public/close-button.png');
+    background-size: cover;
+    background-position: center;
+}
+
 .link{
     cursor: pointer;
 }
