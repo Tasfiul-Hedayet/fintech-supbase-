@@ -154,6 +154,8 @@ const supplier = () => {
   }
 
 
+  
+
   useEffect(() => {
     fetchSuppliers();
   }, []);
@@ -209,6 +211,8 @@ const supplier = () => {
           <button onClick={saveSupplier}>Add</button>
         </div>
       )}
+
+    {/* show list view */}
 
       {showType === SHOW_TYPES.LIST && (
         <div>
