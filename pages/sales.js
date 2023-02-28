@@ -47,7 +47,7 @@ const Document = React.forwardRef(
 
 
 
-const sales = () => {
+const Sales = () => {
 
   const [type, setType] = useState(PAGE_TYPES.ADD);
 
@@ -238,4 +238,4 @@ const sales = () => {
   );
 };
 
-export default sales;
+export default Sales;

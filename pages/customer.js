@@ -9,7 +9,7 @@ const SHOW_TYPES = {
   LIST: "LIST",
 };
 
-const customer = () => {
+const Customer = () => {
   const [showType, setShowtype] = useState(SHOW_TYPES.ADD);
   const [customers, setCustomers] = useState([]);
   const [updatedCustomers, setUpdatedCustomers] = useState([]);
@@ -296,4 +296,4 @@ const customer = () => {
   );
 };
 
-export default customer;
+export default Customer;

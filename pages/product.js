@@ -9,7 +9,7 @@ const SHOW_TYPES = {
   LIST: "LIST",
 };
 
-const product = () => {
+const Product = () => {
   const [showType, setShowtype] = useState(SHOW_TYPES.ADD);
   const [products, setProducts] = useState([]);
   const [updatedProducts, setUpdatedProducts] = useState([]);
@@ -436,4 +436,4 @@ const product = () => {
   );
 };
 
-export default product;
+export default Product;

@@ -40,7 +40,7 @@ const Document = React.forwardRef(
   )
 );
 
-const purchase = () => {
+const Purchase = () => {
   const [type, setType] = useState(PAGE_TYPES.ADD);
 
   const [invoice, setInvoice] = useState("");
@@ -226,4 +226,4 @@ const purchase = () => {
   );
 };
 
-export default purchase;
+export default Purchase;

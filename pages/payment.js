@@ -4,7 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/payment.module.css";
 
-const payment = () => {
+const Payment = () => {
   const [invoice, setInvoice] = useState("");
   const [cash, setCash] = useState("");
   const [cheque, setCheque] = useState("");
@@ -146,4 +146,4 @@ const payment = () => {
   );
 };
 
-export default payment;
+export default Payment;

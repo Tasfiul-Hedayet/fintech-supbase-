@@ -3,7 +3,7 @@ import UnAuthenticated from "@/components/UnAuthenticated";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/dashboard.module.css";
 
-const dashboard = () => {
+const Dashboard = () => {
   let [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -23,4 +23,4 @@ const dashboard = () => {
   }
 };
 
-export default dashboard;
+export default Dashboard;

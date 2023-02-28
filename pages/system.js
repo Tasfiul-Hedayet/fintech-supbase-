@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../styles/system.module.css'
 
-const system = () => {
+const System = () => {
   return (
     <div>
       
@@ -9,4 +9,4 @@ const system = () => {
   )
 }
 
-export default system
+export default System

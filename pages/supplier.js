@@ -9,7 +9,7 @@ const SHOW_TYPES = {
   LIST: "LIST",
 };
 
-const supplier = () => {
+const Supplier = () => {
   const [showType, setShowtype] = useState(SHOW_TYPES.ADD);
   const [suppliers, setSuppliers] = useState([]);
   const [updatedSuppliers, setUpdatedSuppliers] = useState([]);
@@ -280,4 +280,4 @@ const supplier = () => {
   );
 };
 
-export default supplier;
+export default Supplier;
