@@ -25,6 +25,17 @@ const Customer = () => {
   const [description, setDescription] = useState("");
   const [isLoading, setLoading] = useState(false);
 
+
+
+  async function fetchCustomers() {
+    let { data, error } = await supabase.from("customers").select("*");
+    if (data) {
+      setCustomers(data);
+      setUpdatedCustomers(data);
+    }
+  }
+
+
   async function saveCustomer() {
     console.log(name, phone, address, description);
 
@@ -34,6 +45,8 @@ const Customer = () => {
       .from("customers")
       .insert([{ name, phone, address, description }]);
     // clear input after submit
+
+    await fetchCustomers();
     setLoading(false);
     setName("");
     setAddress("");
@@ -116,14 +129,6 @@ const Customer = () => {
     setUpdatedCustomers(newCustomers);
   }
 
-  async function fetchCustomers() {
-    let { data, error } = await supabase.from("customers").select("*");
-    if (data) {
-      setCustomers(data);
-      setUpdatedCustomers(data);
-    }
-  }
-
 
 
 
@@ -147,7 +152,7 @@ const Customer = () => {
 
 
 
-  
+
 
   async function deleteCustomer(index) {
     setLoading(true);

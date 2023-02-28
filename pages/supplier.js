@@ -25,6 +25,15 @@ const Supplier = () => {
   const [description, setDescription] = useState("");
   const [isLoading, setLoading] = useState(false);
 
+
+  async function fetchSuppliers() {
+    let { data, error } = await supabase.from("suppliers").select("*");
+    if (data) {
+      setSuppliers(data);
+      setUpdatedSuppliers(data);
+    }
+  }
+
   async function saveSupplier() {
     console.log(address, name, phone, description);
 
@@ -34,7 +43,10 @@ const Supplier = () => {
       .from("suppliers")
       .insert([{ name, phone, address, description }]);
     // clear input after submit
+    await fetchSuppliers();
+
     setLoading(false);
+
     setName("");
     setAddress("");
     setPhone("");
@@ -121,13 +133,6 @@ const Supplier = () => {
     setUpdatedSuppliers(newSuppliers);
   }
 
-  async function fetchSuppliers() {
-    let { data, error } = await supabase.from("suppliers").select("*");
-    if (data) {
-      setSuppliers(data);
-      setUpdatedSuppliers(data);
-    }
-  }
 
 
   async function updateSupplier(index) {

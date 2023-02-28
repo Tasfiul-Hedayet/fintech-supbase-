@@ -219,7 +219,7 @@ const Product = () => {
       .from("product")
       .update({
         category: updatedProducts[index].category,
-        subcategory: updatedProducts[index].setCategory,
+        subcategory: updatedProducts[index].subcategory,
         brand: updatedProducts[index].brand,
         product: updatedProducts[index].product,
         unit: updatedProducts[index].unit,
@@ -234,6 +234,7 @@ const Product = () => {
 
 
   async function deleteProduct(index) {
+    console.log('ohh sex fuck yeah!');
     setLoading(true);
     console.log(updatedProducts[index]);
     await supabase
