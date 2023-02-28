@@ -144,13 +144,16 @@ const supplier = () => {
 
   }
 
+
+
+
+
   async function deleteSupplier(index) {
     setLoading(true);
     console.log(updatedSuppliers[index]);
     await supabase.from('suppliers').delete().match({ ID: updatedSuppliers[index]?.ID })
     await fetchSuppliers();
     setLoading(false);
-
   }
 
 
@@ -159,6 +162,8 @@ const supplier = () => {
   useEffect(() => {
     fetchSuppliers();
   }, []);
+
+  
 
   if (isLoading) return <div>Loading ....</div>;
 

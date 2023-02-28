@@ -26,7 +26,7 @@ const customer = () => {
   const [isLoading, setLoading] = useState(false);
 
   async function saveCustomer() {
-    console.log(address, name, phone, description);
+    console.log(name, phone, address, description);
 
     setLoading(true);
     // let { data, error } = await supabase.from('users').select('*').match({ username: username, password: password });
@@ -58,9 +58,6 @@ const customer = () => {
     }
     setUpdatedCustomers(newCustomers);
   }
-
-
-
 
   function onChangeForCustomerListPhone(e, index) {
     let newCustomers = [];
@@ -100,8 +97,6 @@ const customer = () => {
     setUpdatedCustomers(newCustomers);
   }
 
-
-
   function onChangeForCustomerListDescription(e, index) {
     let newCustomers = [];
     for (let i = 0; i < updatedCustomers.length; i++) {
@@ -130,28 +125,41 @@ const customer = () => {
   }
 
 
+
+
+
+
   async function updateCustomer(index) {
     setLoading(true);
     console.log(updatedCustomers[index]);
-    await supabase.from('customers').update({
-      name: updatedCustomers[index].name,
-      phone: updatedCustomers[index].phone,
-      address: updatedCustomers[index].address,
-      description: updatedCustomers[index].description,
-    }).match({ ID: updatedCustomers[index]?.ID })
+    await supabase
+      .from("customers")
+      .update({
+        name: updatedCustomers[index].name,
+        phone: updatedCustomers[index].phone,
+        address: updatedCustomers[index].address,
+        description: updatedCustomers[index].description,
+      })
+      .match({ ID: updatedCustomers[index]?.ID });
     await fetchCustomers();
     setLoading(false);
-
   }
+
+
+
+  
 
   async function deleteCustomer(index) {
     setLoading(true);
     console.log(updatedCustomers[index]);
-    await supabase.from('customers').delete().match({ ID: updatedCustomers[index]?.ID })
+    await supabase
+      .from("customers")
+      .delete()
+      .match({ ID: updatedCustomers[index]?.ID });
     await fetchCustomers();
     setLoading(false);
-
   }
+
 
 
   useEffect(() => {
@@ -166,13 +174,14 @@ const customer = () => {
       {showType === SHOW_TYPES.ADD && (
         <div className={styles["add-box"]}>
           <Select
-            className={styles['select']}
+            className={styles["select"]}
             onChange={(currentOption) => {
               console.log(currentOption.value);
               setShowtype(currentOption.value);
             }}
             options={options}
           />
+
           <input
             value={name}
             onChange={(e) => {
@@ -181,6 +190,7 @@ const customer = () => {
             type="text"
             placeholder="Name"
           ></input>
+
           <input
             value={phone}
             onChange={(e) => {
@@ -210,20 +220,22 @@ const customer = () => {
         </div>
       )}
 
+      {/* show list view */}
+
       {showType === SHOW_TYPES.LIST && (
         <div>
           <Select
-            className={styles['select']}
+            className={styles["select"]}
             onChange={(currentOption) => {
               console.log(currentOption.value);
               setShowtype(currentOption.value);
             }}
             options={options}
           />
-          <div className={styles['customers']}>
+          <div className={styles["customers"]}>
             {customers.map((customer, index) => {
               return (
-                <div key={index} className={styles['customer']}>
+                <div key={index} className={styles["customer"]}>
                   <input
                     value={updatedCustomers[index]?.name}
                     onChange={(e) => {
@@ -232,6 +244,7 @@ const customer = () => {
                     type="text"
                     placeholder="Name"
                   ></input>
+
                   <input
                     value={updatedCustomers[index]?.phone}
                     onChange={(e) => {
@@ -257,9 +270,21 @@ const customer = () => {
                     placeholder="Description"
                   ></input>
 
-                  <div className={styles['buttons']}>
-                    <button onClick={() => { updateCustomer(index) }}>Update</button>
-                    <button onClick={() => { deleteCustomer(index) }}>Delete</button>
+                  <div className={styles["buttons"]}>
+                    <button
+                      onClick={() => {
+                        updateCustomer(index);
+                      }}
+                    >
+                      Update
+                    </button>
+                    <button
+                      onClick={() => {
+                        deleteCustomer(index);
+                      }}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
               );
