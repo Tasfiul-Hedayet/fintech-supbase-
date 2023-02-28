@@ -154,8 +154,8 @@ function Sales() {
   function removeFromCart(product) {
     let updatedItems = [];
 
-    for(let i = 0 ; i < items?.length; i++){
-      if(items[i].ID === product?.ID) continue;
+    for (let i = 0; i < items?.length; i++) {
+      if (items[i].ID === product?.ID) continue;
       updatedItems.push(items[i]);
     }
     setItems(updatedItems);
@@ -196,7 +196,7 @@ function Sales() {
 
             }).map((product, index) => {
               return (
-                <div className={styles['product']}>
+                <div className={styles['product']} key={product.ID}>
                   {/* {JSON.stringify(product)} */}
                   <h1> {`product Name : ${product.product}`}</h1>
                   <h2> {`Selling Pricec: ${product.selling} BDT`}</h2>
@@ -224,7 +224,13 @@ function Sales() {
               {JSON.stringify(items)}
 
 
-              <button onClick={savePurchase}>Create</button>
+
+              {
+                items?.length ?
+                  <button onClick={savePurchase}>Create</button>
+                  :
+                  <h3>Empty Cart!</h3>
+              }
             </div>
           }
 
