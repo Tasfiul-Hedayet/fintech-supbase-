@@ -109,14 +109,14 @@ const Purchase = () => {
     // SetReference;
   }
 
-  if (isLoading) return <div>Loading ....</div>;
+  if (isLoading) return <div>{"Loading ...."}</div>;
 
   return (
     <div className={styles["page"]}>
       <Sidebar />
       {type === PAGE_TYPES.ADD && (
         <div className={styles["box"]}>
-          <h2 className={styles["h2"]}>Purchase</h2>
+          <h2 className={styles["h2"]}>{"Purchase"}</h2>
           <input
             value={invoice}
             onChange={(e) => {
@@ -211,7 +211,7 @@ const Purchase = () => {
               setType(PAGE_TYPES.PRINT);
             }}
           >
-            Go to print page
+           {"Go to print page"}
           </button>
         </div>
       )}
@@ -219,7 +219,7 @@ const Purchase = () => {
       {type === PAGE_TYPES.PRINT && (
         <>
           <Document invoice={invoice} ref={documentRef} />
-          <button onClick={handlePrint}>Print this out!</button>
+          <button onClick={handlePrint}>{"Print this out!"}</button>
         </>
       )}
     </div>
