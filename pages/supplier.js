@@ -90,7 +90,7 @@ const supplier = () => {
           name: updatedSuppliers[i].name,
           phone: updatedSuppliers[i].phone,
           address: e.target.value,
-          description: updatedSuppliers[i].address,
+          description: updatedSuppliers[i].description,
         });
       } else {
         newSuppliers.push(updatedSuppliers[i]);
