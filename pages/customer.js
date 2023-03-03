@@ -14,6 +14,8 @@ const Customer = () => {
   const [customers, setCustomers] = useState([]);
   const [updatedCustomers, setUpdatedCustomers] = useState([]);
 
+  const [keyword, setKeyword] = useState('');
+
   const options = [
     { value: SHOW_TYPES.ADD, label: "add Customer" },
     { value: SHOW_TYPES.LIST, label: "show Customer list" },
@@ -165,6 +167,11 @@ const Customer = () => {
     setLoading(false);
   }
 
+  function filterByPhone(element) {
+    if (!keyword || keyword === '') return true;
+    return element?.phone?.toLowerCase().includes(keyword?.toLowerCase());
+  }
+
 
 
   useEffect(() => {
@@ -237,12 +244,20 @@ const Customer = () => {
             }}
             options={options}
           />
+          <input
+            className={styles['customer-phone-search']}
+            placeholder="Search by Customer Phone No."
+            type="text"
+            value={keyword}
+            onChange={(e) => { setKeyword(e?.target?.value) }}
+          />
+
           <div className={styles["customers"]}>
-            {customers.map((customer, index) => {
+            {updatedCustomers.filter(filterByPhone).map((customer, index) => {
               return (
                 <div key={index} className={styles["customer"]}>
                   <input
-                    value={updatedCustomers[index]?.name}
+                    value={customer?.name}
                     onChange={(e) => {
                       onChangeForCustomerListName(e, index);
                     }}
@@ -251,7 +266,7 @@ const Customer = () => {
                   ></input>
 
                   <input
-                    value={updatedCustomers[index]?.phone}
+                    value={customer?.phone}
                     onChange={(e) => {
                       onChangeForCustomerListPhone(e, index);
                     }}
@@ -259,7 +274,7 @@ const Customer = () => {
                     placeholder="Phone Number"
                   ></input>
                   <input
-                    value={updatedCustomers[index]?.address}
+                    value={customer?.address}
                     onChange={(e) => {
                       onChangeForCustomerListAddress(e, index);
                     }}
@@ -267,7 +282,7 @@ const Customer = () => {
                     placeholder="Address"
                   ></input>
                   <input
-                    value={updatedCustomers[index]?.description}
+                    value={customer?.description}
                     onChange={(e) => {
                       onChangeForCustomerListDescription(e, index);
                     }}

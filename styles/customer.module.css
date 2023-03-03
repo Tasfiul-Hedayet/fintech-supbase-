@@ -131,3 +131,17 @@
 .add-box .select {
     margin: 0;
 }
+
+.customer-phone-search {
+    margin-top: 1rem;
+    padding: 7px;
+    height: 40px;
+    width: 60%;
+    margin-left: 20%;
+    border-radius: 10px;
+    border-color: black;
+    outline: none;
+    background-color: white;
+    border: 1px solid #2c2c2c;
+    text-align: center;
+}
