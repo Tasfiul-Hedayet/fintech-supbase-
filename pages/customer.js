@@ -3,6 +3,7 @@ import { supabase } from "@/lib/client";
 import Sidebar from "@/components/Sidebar";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/customer.module.css";
+import { useRouter } from "next/router";
 
 const SHOW_TYPES = {
   ADD: "ADD",
@@ -26,6 +27,7 @@ const Customer = () => {
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const router = useRouter();
 
 
 
@@ -304,6 +306,14 @@ const Customer = () => {
                       }}
                     >
                       Delete
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        router.push(`/sales?customerID=${customer.ID}`);
+                      }}
+                    >
+                      Billing
                     </button>
                   </div>
                 </div>
