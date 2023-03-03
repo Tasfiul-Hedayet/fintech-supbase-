@@ -13,23 +13,82 @@ const PAGE_TYPES = {
   PRINT: "PRINT",
 };
 
-const Document = React.forwardRef(
-  (
-    {
+const Document = React.forwardRef(({ cart }, ref) => (
 
 
-    },
-    ref
-  ) => (
-    <div ref={ref} className={styles['document']}>
-
-      <div className={styles['document-title']}>
-        <h1>Invoice</h1>
-      </div>
-      <p>{`invoice Number : ${"aaa"}`}</p>
+  <div ref={ref} className={styles['document']}>
+    <div className={styles['document-title']}>
+      <h1>payment invoice</h1>
     </div>
-  )
-);
+    <div>
+
+      <div>
+        {"Quantity"}
+      </div>
+      <div>
+        {"Item"}
+      </div>
+      <div>
+        {"Price"}
+      </div>
+      <div>
+        {"Total Price"}
+      </div>
+
+      {
+        cart.cart_items.map((item, index) => {
+          return (
+            <>
+              <div>
+                {item?.quantity}
+              </div>
+              <div>
+                {item?.product}
+              </div>
+              <div>
+                {item?.selling}
+              </div>
+              <div>
+                {item?.selling * item?.quantity}
+              </div>
+            </>
+          )
+
+        })
+      }
+    </div>
+    <div>
+      <h3>
+        {`subtotal - ${cart?.subTotal}`}
+      </h3>
+      <h3>
+        {`caring cost - ${cart?.caring}`}
+      </h3>
+      <h3>
+        {`transportation cost - ${cart?.transportation}`}
+      </h3>
+      <h3>
+        {`discount - ${cart?.discount}`}
+      </h3>
+
+      <h3>
+        {`reference - ${cart?.reference}`}
+      </h3>
+
+      <h3>
+        {`signature - ${cart?.signature}`}
+      </h3>
+
+      <h3>
+        {`total - ${cart?.total}`}
+      </h3>
+
+
+    </div>
+  </div>
+)
+)
+
 Document.displayName = 'Document';
 
 
@@ -60,6 +119,7 @@ function Sales() {
   const [discount, setDiscount] = useState(0);
   const [caring, setCaring] = useState(0);
   const [transportation, setTransportation] = useState(0);
+  const [cart, setCart] = useState("");
 
 
   function is_numeric(str) {
@@ -67,10 +127,36 @@ function Sales() {
   }
 
 
-  function processCartData(){
-    for(let i = 0; i < items?.length; i++){
-      console.log(items[i]);
+  function processCartData() {
+
+    let cart_items = [];
+
+
+    for (let i = 0; i < items?.length; i++) {
+
+      let quantity = getQuantityOfProduct(items[i]);
+      let cart_item = {
+        ...items[i],
+        quantity: quantity,
+      }
+      cart_items.push(cart_item)
     }
+
+    const cartData = {
+      cart_items: cart_items,
+      total: calculateTotalOfCart(),
+      subTotal: calculateSubTotalOfCart(),
+      caring: caring,
+      transportation: transportation,
+      discount: discount,
+      signature: signature,
+      reference: reference,
+
+    };
+
+    console.log(cartData);
+    return cartData;
+
   }
 
 
@@ -78,15 +164,11 @@ function Sales() {
 
     let added = false;
     for (let i = 0; i < items?.length; i++) {
-      console.log(items[i]);
-      console.log('prod', product);
-
       if (items[i].ID === product?.ID) {
         added = true;
         break;
       }
     }
-    console.log(added);
     return added;
   }
 
@@ -135,24 +217,14 @@ function Sales() {
   // save in database later !!
   async function savePurchase() {
 
-    // setLoading(true);
-    // await supabase.from("sales").insert([
-    //   {
-    //     invoice,
-    //     selling,
-    //     quantity,
-    //     percentage,
-    //     direct,
-    //     caring,
-    //     transportation,
-    //     total,
-    //     signature,
-    //     reference,
-    //   },
-    // ]);
-    // clear input after submit
-
-    processCartData();
+    setLoading(true);
+    let cartData = JSON.stringify(processCartData());
+    setCart(cartData);
+    await supabase
+      .from("sales")
+      .insert([
+        { cart: cartData },
+      ]);
     setLoading(false);
     setType(PAGE_TYPES.PRINT);
   }
@@ -457,6 +529,7 @@ function Sales() {
       {type === PAGE_TYPES.PRINT && (
         <div className={styles["print-box"]}>
           <Document
+            cart={JSON.parse(cart)}
             ref={documentRef} />
 
           <div className={styles["buttons"]}>
