@@ -18,7 +18,7 @@
 .box input {
     padding: 15px;
     height: 40px;
-    width: 300px;
+    width: 40vw;
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
@@ -99,6 +99,8 @@
     gap: 10px;
 }
 
+
+
 .select {
     padding: 20px;
     cursor: pointer;
@@ -171,4 +173,22 @@
 .item-quantity {
     font-size: x-large;
     font-weight: bolder;
+}
+
+
+@media only screen and (max-width: 412px){
+    .box {
+        padding: 50px;
+    }
+    .box input {
+        height: 50px;
+        width: 50vw;
+    }
+}
+
+@media only screen and (min-width:413px) and (max-width: 800px){
+    .box input {
+        height: 70px;
+        width: 70vw;
+    }
 }
