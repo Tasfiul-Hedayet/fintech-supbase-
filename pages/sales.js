@@ -21,7 +21,6 @@ const Document = React.forwardRef(({ cart }, ref) => (
       <h1>payment invoice</h1>
     </div>
     <div>
-
       <div>
         {"Quantity"}
       </div>
