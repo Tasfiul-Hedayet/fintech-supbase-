@@ -67,6 +67,12 @@ function Sales() {
   }
 
 
+  function processCartData(){
+    for(let i = 0; i < items?.length; i++){
+      console.log(items[i]);
+    }
+  }
+
 
   function checkIfAlreadyAddedToCart(product) {
 
@@ -145,6 +151,8 @@ function Sales() {
     //   },
     // ]);
     // clear input after submit
+
+    processCartData();
     setLoading(false);
     setType(PAGE_TYPES.PRINT);
   }
@@ -162,8 +170,8 @@ function Sales() {
 
   function calculateTotalOfCart() {
     let subTotal = calculateSubTotalOfCart();
-    subTotal -= caring;
-    subTotal -= transportation;
+    subTotal += caring;
+    subTotal += transportation;
     subTotal -= discount;
     return subTotal;
   }
@@ -370,52 +378,72 @@ function Sales() {
                 })
               }
 
+              {
+                items?.length && items.length > 0 &&
+                <div className={styles['cart-preview']}>
+                  <div className={styles['cart-subtotal']}>
+                    <p>{`subTotal : ${calculateSubTotalOfCart()}`}</p>
+                  </div>
+                  <div className={styles['cart-caring']}>
+                    <p>Caring Cost : </p>
+                    <input type="text" placeholder="caring cost" value={caring} onChange={(e) => {
+                      if (e.target.value === '') setCaring(0);
+                      else if (is_numeric(e.target.value))
+                        setCaring(parseFloat(e.target.value));
+                    }} />
+                  </div>
+
+                  <div className={styles['cart-transportation']}>
+                    <p>transportation Cost : </p>
+                    <input type="text" placeholder="transportation cost" value={transportation} onChange={(e) => {
+                      if (e.target.value === '') setTransportation(0);
+                      else if (is_numeric(e.target.value))
+                        setTransportation(parseFloat(e.target.value));
+                    }} />
+                  </div>
 
 
-              <div>
-                <div>
-                  <p>{`subTotal : ${calculateSubTotalOfCart()}`}</p>
+                  <div className={styles['cart-discount']}>
+                    <p>discount : </p>
+                    <input type="text" placeholder="discount cost" value={discount} onChange={(e) => {
+                      if (e.target.value === '') setDiscount(0);
+                      else if (is_numeric(e.target.value))
+                        setDiscount(parseFloat(e.target.value));
+                    }} />
+                  </div>
+
+                  <div className={styles['cart-signature']}>
+                    <p>signature : </p>
+                    <input type="text" placeholder="signature" value={signature} onChange={(e) => {
+                      setSignature(e.target.value);
+                    }} />
+                  </div>
+
+                  <div className={styles['cart-reference']}>
+                    <p>reference : </p>
+                    <input type="text" placeholder="references" value={reference} onChange={(e) => {
+                      SetReference(e.target.value);
+                    }} />
+                  </div>
+
+                  <div className={styles['cart-total']}>
+                    <p>{`Total : ${calculateTotalOfCart()}`}</p>
+                  </div>
+
+
                 </div>
-                <div>
-                  <p>Caring Cost : </p>
-                  <input type="text" placeholder="caring cost" value={caring} onChange={(e) => {
-                    if (e.target.value === '') setCaring(0);
-                    else if (is_numeric(e.target.value))
-                      setCaring(parseFloat(e.target.value));
-                  }} />
-                </div>
 
-                <div>
-                  <p>transportation Cost : </p>
-                  <input type="text" placeholder="transportation cost" value={transportation} onChange={(e) => {
-                    if (e.target.value === '') setTransportation(0);
-                    else if (is_numeric(e.target.value))
-                      setTransportation(parseFloat(e.target.value));
-                  }} />
-                </div>
+              }
 
 
-                <div>
-                  <p>discount Cost : </p>
-                  <input type="text" placeholder="discount cost" value={discount} onChange={(e) => {
-                    if (e.target.value === '') setDiscount(0);
-                    else if (is_numeric(e.target.value))
-                      setDiscount(parseFloat(e.target.value));
-                  }} />
-                </div>
-
-                <div>
-                  <p>{`Total : ${calculateTotalOfCart()}`}</p>
-                </div>
 
 
-              </div>
 
               {
                 items?.length ?
                   <button onClick={savePurchase}>Next</button>
                   :
-                  <h3>Empty Cart!</h3>
+                  <h2 className={styles['empty-cart']}>Empty Cart!</h2>
               }
             </div>
           }

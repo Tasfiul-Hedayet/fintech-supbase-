@@ -103,6 +103,7 @@
     padding: 20px;
     cursor: pointer;
 }
+
 .active-select {
     background-color: #00aa36;
     padding: 20px;
@@ -171,4 +172,78 @@
 .item-quantity {
     font-size: x-large;
     font-weight: bolder;
+}
+
+.cart-preview {
+    background-color: #303030;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 20px;
+}
+
+.cart-caring,
+.cart-discount,
+.cart-total,
+.cart-subtotal,
+.cart-transportation,
+.cart-signature,
+.cart-reference {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+
+.cart-subtotal {
+    font-size: x-large;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+    padding-bottom: 10px;
+}
+
+
+.cart-total {
+    font-size: x-large;
+    font-weight: bold;
+    border-top: 1px solid white;
+    padding-top: 10px;
+}
+.cart-discount input {
+    margin: 0;
+    outline: none;
+}
+
+.cart-caring input {
+    margin: 0;
+    outline: none;
+}
+
+.cart-subtotal input {
+    margin: 0;
+    outline: none;
+}
+
+.cart-transportation input {
+    margin: 0;
+    outline: none;
+}
+
+.cart-signature input {
+    margin: 0;
+    outline: none;
+}
+
+.cart-reference input {
+    margin: 0;
+    outline: none;
+}
+
+.empty-cart {
+    color: white;
+    margin-top: 10px;
+    text-align: center;
 }
