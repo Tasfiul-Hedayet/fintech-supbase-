@@ -108,3 +108,67 @@
     padding: 20px;
     cursor: pointer;
 }
+
+
+.item {
+    background-color: #303030;
+    padding: 20px;
+    border-radius: 30px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.item-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.item-bottom {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+
+.remove-item-button {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    margin-bottom: 10px;
+    background: url('../public/close-button.png');
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+
+.increment {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    margin-bottom: 10px;
+    background: url('../public/plus.png');
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+.decrement {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    margin-bottom: 10px;
+    background: url('../public/minus.png');
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+.item-quantity {
+    font-size: x-large;
+    font-weight: bolder;
+}
