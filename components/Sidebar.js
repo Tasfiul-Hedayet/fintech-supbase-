@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import styles from '../styles/Sidebar.module.css'
 
 
-
 const Sidebar = () => {
 
     const router = useRouter();
@@ -32,8 +31,9 @@ const Sidebar = () => {
                 <div className={styles['menu-close-button']} onClick={() => { toggle() }}>
                 </div>
                 <div className={styles['title-link']}>
-                    Company
+                    {"Brother's International"}
                 </div>
+                
 
                 <div className={styles['link']} onClick={() => { router.push('/supplier') }}>
                     Suppplier
@@ -59,9 +59,9 @@ const Sidebar = () => {
                     Sales Invoice
                 </div>
 
-                <div className={styles['link']} onClick={() => { router.push('/system') }}>
+                {/* <div className={styles['link']} onClick={() => { router.push('/system') }}>
                     System
-                </div>
+                </div> */}
 
                 <div className={styles['link']} onClick={logout}>
                     Logout

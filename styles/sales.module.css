@@ -18,7 +18,7 @@
 .box input {
     padding: 15px;
     height: 40px;
-    width: 300px;
+    width: 40vw;
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
@@ -99,6 +99,8 @@
     gap: 10px;
 }
 
+
+
 .select {
     padding: 20px;
     cursor: pointer;
@@ -174,6 +176,7 @@
     font-weight: bolder;
 }
 
+
 .cart-preview {
     background-color: #303030;
     color: white;
@@ -246,4 +249,11 @@
     color: white;
     margin-top: 10px;
     text-align: center;
+}
+
+@media only screen and (min-width:413px) and (max-width: 800px){
+    .box input {
+        height: 70px;
+        width: 70vw;
+    }
 }

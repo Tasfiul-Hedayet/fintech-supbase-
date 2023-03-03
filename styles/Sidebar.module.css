@@ -31,6 +31,7 @@
     background: url('../public/menu-button.png');
     background-size: cover;
     background-position: center;
+    cursor: pointer;
 }
 
 
@@ -44,6 +45,11 @@
     background: url('../public/close-button.png');
     background-size: cover;
     background-position: center;
+    cursor: pointer;
+}
+
+.title-link{
+    padding-bottom: 8px;
 }
 
 .link{
