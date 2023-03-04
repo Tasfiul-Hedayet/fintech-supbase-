@@ -16,10 +16,9 @@ const Document = React.forwardRef(({ cart }, ref) => (
     <div className={styles["document-title"]}>
       <h1>payment invoice</h1>
     </div>
-    <p>-----------------------------------------------------------------------------------------------------------------------------------------</p>
     <div className={styles["print-up"]}>
-    <div>Date</div>
-    <div>Time</div>
+      <div>Date</div>
+      <div>Time</div>
     </div>
     <div className={styles["print"]}>
       <div>{"Quantity"}</div>
@@ -29,12 +28,12 @@ const Document = React.forwardRef(({ cart }, ref) => (
 
       {cart.cart_items.map((item, index) => {
         return (
-          <>
+          <React.Fragment key={index}>
             <div>{item?.quantity}</div>
             <div>{item?.product}</div>
             <div>{item?.selling}</div>
             <div>{item?.selling * item?.quantity}</div>
-          </>
+          </React.Fragment>
         );
       })}
     </div>
@@ -49,9 +48,7 @@ const Document = React.forwardRef(({ cart }, ref) => (
       <h3>{`Signature - ${cart?.signature}`}</h3>
 
       <h3>{`Net Total: - ${cart?.total}`}</h3>
-      <p>-----------------------------------------------------------------------------------------------------------------------------------------</p>
-      <p>-----------------------------------------------------------------------------------------------------------------------------------------</p>
-      <p>Powered by - WHOAREWE, 017xxxxxxxx</p>
+      <p className={styles['powered-by']}>Powered by - WHOAREWE, 017xxxxxxxx</p>
     </div>
   </div>
 ));
@@ -310,7 +307,7 @@ function Sales() {
                   <div className={styles["product"]} key={product.ID}>
                     {/* {JSON.stringify(product)} */}
                     <h1> {`product Name : ${product.product}`}</h1>
-                    <h2> {`Selling Pricec: ${product.selling} BDT`}</h2>
+                    <h2> {`Selling Price: ${product.selling} BDT`}</h2>
                     <h3> {`Category : ${product.category}`}</h3>
                     <p> {`Sub category : ${product.subcategory}`}</p>
                     <button
@@ -336,9 +333,8 @@ function Sales() {
                     <div className={styles["item-top"]}>
                       <p className={styles["item-name"]}>{item.product}</p>
                       <p className={styles["item-price"]}>
-                        {` ${getQuantityOfProduct(item)} x ${
-                          item.selling
-                        } = ${getProductPrice(item)} BDT`}
+                        {` ${getQuantityOfProduct(item)} x ${item.selling
+                          } = ${getProductPrice(item)} BDT`}
                       </p>
                       <div
                         className={styles["remove-item-button"]}
