@@ -24,8 +24,8 @@ export default function Home() {
     // check if is logged in
     // if looged in, send to dashboard
     // else do nothing
-    let isLoggedIn = JSON.parse(localStorage.getItem("user"));
-    if (isLoggedIn) router.push("/dashboard");
+    // let isLoggedIn = JSON.parse(localStorage.getItem("user"));
+    // if (isLoggedIn) router.push("/dashboard");
   }, []);
 
   return <Login />;

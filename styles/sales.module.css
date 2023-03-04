@@ -251,6 +251,16 @@
     text-align: center;
 }
 
+.print{
+    padding-top: 20px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+
 @media only screen and (min-width:413px) and (max-width: 800px){
     .box input {
         height: 70px;

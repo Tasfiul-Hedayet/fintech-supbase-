@@ -7,9 +7,9 @@ const UnAuthenticated = () => {
     const router = useRouter();
     return (
         <div className={styles['page']}>
-            <p className={styles['prompt']}>
+            {/* <p className={styles['prompt']}>
                 Oops, you are not logged in!
-            </p>
+            </p> */}
             <button onClick={() => { router.push('/') }}>Go To Login Page</button>
         </div>
     )
