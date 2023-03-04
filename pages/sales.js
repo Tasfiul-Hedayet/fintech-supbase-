@@ -307,7 +307,7 @@ function Sales() {
                   <div className={styles["product"]} key={product.ID}>
                     {/* {JSON.stringify(product)} */}
                     <h1> {`product Name : ${product.product}`}</h1>
-                    <h2> {`Selling Pricec: ${product.selling} BDT`}</h2>
+                    <h2> {`Selling Price: ${product.selling} BDT`}</h2>
                     <h3> {`Category : ${product.category}`}</h3>
                     <p> {`Sub category : ${product.subcategory}`}</p>
                     <button
