@@ -16,7 +16,6 @@ const Document = React.forwardRef(({ cart }, ref) => (
     <div className={styles["document-title"]}>
       <h1>payment invoice</h1>
     </div>
-    <p>-----------------------------------------------------------------------------------------------------------------------------------------</p>
     <div className={styles["print-up"]}>
     <div>Date</div>
     <div>Time</div>
@@ -49,9 +48,7 @@ const Document = React.forwardRef(({ cart }, ref) => (
       <h3>{`Signature - ${cart?.signature}`}</h3>
 
       <h3>{`Net Total: - ${cart?.total}`}</h3>
-      <p>-----------------------------------------------------------------------------------------------------------------------------------------</p>
-      <p>-----------------------------------------------------------------------------------------------------------------------------------------</p>
-      <p>Powered by - WHOAREWE, 017xxxxxxxx</p>
+      <p className={styles['powered-by']}>Powered by - WHOAREWE, 017xxxxxxxx</p>
     </div>
   </div>
 ));

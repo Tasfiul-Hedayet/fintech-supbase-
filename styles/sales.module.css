@@ -65,17 +65,34 @@
     border: 1px solid white;
 }
 
+.document {
+    background-color: white;
+    padding: 20px;
+    min-width: 80%;
+}
+.document-title {
+    border-bottom: 1px dotted black;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+}
 
-
+.powered-by {
+    border-top: 1px dotted black;
+    padding-top: 10px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
 
 .print-box {
     min-width: 100vw;
     min-height: 100vh;
-    background-color: green;
+    background-color: #1C1C1C;
     display: flex;
     align-items: center;
     padding: 30px;
     flex-direction: column;
+    margin-top: 40px;
 }
 
 .product {
@@ -264,8 +281,11 @@
     padding: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 10px;
-    row-gap: 10px;
+}
+.print > div {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    padding: 10px;
 }
 
 .print-below{
