@@ -16,9 +16,14 @@ const Document = React.forwardRef(({ cart }, ref) => (
     <div className={styles["document-title"]}>
       <h1>payment invoice</h1>
     </div>
+    <p>-----------------------------------------------------------------------------------------------------------------------------------------</p>
+    <div className={styles["print-up"]}>
+    <div>Date</div>
+    <div>Time</div>
+    </div>
     <div className={styles["print"]}>
       <div>{"Quantity"}</div>
-      <div>{"Item"}</div>
+      <div>{"Item Name"}</div>
       <div>{"Price"}</div>
       <div>{"Total Price"}</div>
 
@@ -33,17 +38,20 @@ const Document = React.forwardRef(({ cart }, ref) => (
         );
       })}
     </div>
-    <div>
-      <h3>{`subtotal - ${cart?.subTotal}`}</h3>
-      <h3>{`caring cost - ${cart?.caring}`}</h3>
-      <h3>{`transportation cost - ${cart?.transportation}`}</h3>
-      <h3>{`discount - ${cart?.discount}`}</h3>
+    <div div className={styles["print-below"]}>
+      <h3>{`Subtotal - ${cart?.subTotal}`}</h3>
+      <h3>{`Caring cost - ${cart?.caring}`}</h3>
+      <h3>{`Transportation cost - ${cart?.transportation}`}</h3>
+      <h3>{`Discount - ${cart?.discount}`}</h3>
 
-      <h3>{`reference - ${cart?.reference}`}</h3>
+      <h3>{`Reference - ${cart?.reference}`}</h3>
 
-      <h3>{`signature - ${cart?.signature}`}</h3>
+      <h3>{`Signature - ${cart?.signature}`}</h3>
 
-      <h3>{`total - ${cart?.total}`}</h3>
+      <h3>{`Net Total: - ${cart?.total}`}</h3>
+      <p>-----------------------------------------------------------------------------------------------------------------------------------------</p>
+      <p>-----------------------------------------------------------------------------------------------------------------------------------------</p>
+      <p>Powered by - WHOAREWE, 017xxxxxxxx</p>
     </div>
   </div>
 ));
