@@ -17,8 +17,8 @@ const Document = React.forwardRef(({ cart }, ref) => (
       <h1>payment invoice</h1>
     </div>
     <div className={styles["print-up"]}>
-    <div>Date</div>
-    <div>Time</div>
+      <div>Date</div>
+      <div>Time</div>
     </div>
     <div className={styles["print"]}>
       <div>{"Quantity"}</div>
@@ -28,12 +28,12 @@ const Document = React.forwardRef(({ cart }, ref) => (
 
       {cart.cart_items.map((item, index) => {
         return (
-          <>
+          <React.Fragment key={index}>
             <div>{item?.quantity}</div>
             <div>{item?.product}</div>
             <div>{item?.selling}</div>
             <div>{item?.selling * item?.quantity}</div>
-          </>
+          </React.Fragment>
         );
       })}
     </div>
@@ -333,9 +333,8 @@ function Sales() {
                     <div className={styles["item-top"]}>
                       <p className={styles["item-name"]}>{item.product}</p>
                       <p className={styles["item-price"]}>
-                        {` ${getQuantityOfProduct(item)} x ${
-                          item.selling
-                        } = ${getProductPrice(item)} BDT`}
+                        {` ${getQuantityOfProduct(item)} x ${item.selling
+                          } = ${getProductPrice(item)} BDT`}
                       </p>
                       <div
                         className={styles["remove-item-button"]}
