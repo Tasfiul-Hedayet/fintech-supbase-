@@ -334,6 +334,7 @@ const Product = () => {
               setSelling(e.target.value);
             }}
             type="text"
+            
             placeholder="Selling Price"
           ></input>
 
