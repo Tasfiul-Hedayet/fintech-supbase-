@@ -24,17 +24,17 @@ const Login = () => {
 
     async function handleSubmit() {
 
-        // let { data, error } = await supabase.from('users').select('*').match({ username: username, password: password });
-        // console.log(data, error);
+        let { data, error } = await supabase.from('users').select('*').match({ username: username, password: password });
+        console.log(data, error);
 
-        // if (!data || data.length === 0 || error) {
-        //     setIsError('Invalid username or password');
-        //     return;
-        // }
+        if (!data || data.length === 0 || error) {
+            setIsError('Invalid username or password');
+            return;
+        }
 
-        // // save user in cache
-        // localStorage.setItem('user', JSON.stringify({ username: username, password: password }));
-        // router.push('/dashboard');
+        // save user in cache
+        localStorage.setItem('user', JSON.stringify({ username: username, password: password }));
+        router.push('/dashboard');
 
     }
 
@@ -50,6 +50,7 @@ const Login = () => {
                 {
                     error &&
                     <p className={styles['error']}>{error}</p>
+                    
                 }
                 <button onClick={() => { handleSubmit() }}>Login</button>
             </div>
