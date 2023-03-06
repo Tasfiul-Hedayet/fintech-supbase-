@@ -28,7 +28,7 @@ const Customer = () => {
           <div></div>
           <h1>Customer</h1>
         </div>
-        <div className={styles["nav-status"]}>Home/Supplier/Supplier list</div>
+        <div className={styles["nav-status"]}>Home/Customer/Customer list</div>
       </div>
 
       <div className={styles["nav-button"]}>
