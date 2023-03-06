@@ -2,7 +2,7 @@ import Select from "react-select";
 import { supabase } from "@/lib/client";
 import Sidebar from "@/components/Sidebar";
 import React, { useEffect, useState } from "react";
-import styles from "../styles/test.module.css";
+import styles from "../styles/add-customer.module.css";
 import { useRouter } from "next/router";
 
 const Customer = () => {
@@ -37,17 +37,16 @@ const Customer = () => {
       <Sidebar />
       <div className={styles["top-bar"]}>
         <div className={styles["top-title"]}>
-          <p>icon</p>
+          <div></div>
           <h1>Customer</h1>
         </div>
-
-        <div>Home/Customer/Add Customer</div>
+        <div className={styles["nav-status"]}>Home/Customer/Add Customer</div>
       </div>
 
       <div className={styles["nav-button"]}>
-        <button>Add Customer </button>
+        <button>Add Customer</button>
         <button>Manage Customer</button>
-        <button>List Customer</button>
+        <button onClick={() => { router.push('/customer-list') }}>List Customer</button>
       </div>
       <div className={styles["add-box"]}>
         <h1>Add Customer</h1>

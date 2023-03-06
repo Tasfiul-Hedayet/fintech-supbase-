@@ -35,7 +35,7 @@ const Sidebar = () => {
                 </div>
                 
 
-                <div className={styles['link']} onClick={() => { router.push('/supplier') }}>
+                <div className={styles['link']} onClick={() => { router.push('/add-supplier') }}>
                     Suppplier
                 </div>
 
@@ -51,7 +51,7 @@ const Sidebar = () => {
                     Suppplier Payment
                 </div>
 
-                <div className={styles['link']} onClick={() => { router.push('/customer') }}>
+                <div className={styles['link']} onClick={() => { router.push('/add-customer') }}>
                     Customer
                 </div>
 

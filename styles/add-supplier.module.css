@@ -1,0 +1,179 @@
+.page {
+  width: 100vw;
+  height: max-content;
+  min-height: 100vh;
+}
+
+.top-bar {
+  width: 100vw;
+  height: max-content;
+  min-height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 12.5vw;
+  padding-left: 12.5vw;
+}
+
+.top-title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.top-title > div {
+  background: url(../public/supplier.png);
+  background-size: cover;
+  height: 60px;
+  width: 60px;
+}
+
+.nav-status {
+  border: 1px solid black;
+}
+
+.nav-button {
+  width: 100vw;
+  height: max-content;
+  min-height: 5vh;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+.nav-button > button {
+  border: none;
+  outline: none;
+  background-color: yellow;
+  color: black;
+  padding: 10px;
+}
+
+.nav-button > button:hover {
+  background-color: green;
+  color: white;
+}
+
+.add-box {
+  width: 100vw;
+  height: max-content;
+}
+
+.add-box > h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.add-input {
+  width: 100vw;
+  height: max-content;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-left: 15vw;
+  padding-right: 15vw;
+  row-gap: 5px;
+  column-gap: 5px;
+}
+
+.add-input > div {
+  width: 80%;
+  height: max-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.add-input > div > input {
+  height: 5vh;
+  flex-grow: 1;
+  padding-left: 15px;
+  margin-left: 20px;
+}
+
+.add-input > div > label {
+  min-width: 5vw;
+  text-align: end;
+}
+
+.save-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 10vh;
+}
+
+.save-button > button {
+  border: none;
+  outline: none;
+  background-color: yellow;
+  color: rgb(6, 0, 0);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.save-button > button:hover {
+  background-color: green;
+  color: white;
+}
+
+@media only screen and (max-width: 412px) {
+
+  .add-input {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .add-input > div > label {
+    min-width: 25vw;
+    text-align: end;
+  }
+
+  .top-bar{
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+  }
+
+  .top-title > h1{
+    font-size: medium;
+    padding-right: 12px;
+  }
+
+  .add-input {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+  }
+}
+
+@media only screen and (min-width: 413px) and (max-width: 1060px) {
+    
+  .add-input {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .add-input > div > label {
+    min-width: 20vw;
+    text-align: end;
+  }
+
+  .top-bar{
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+  }
+
+  .top-title > h1{
+    font-size: large;
+    padding-right: 12px;
+  }
+
+  .add-input {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+  }
+}
