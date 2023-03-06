@@ -74,7 +74,6 @@
     grid-template-columns: 1fr 5fr 5fr 5fr 5fr;
     /* grid-template-columns: 0.5fr 3fr 2fr 3fr 4fr; */
     grid-template-rows: max-content;
-    background-color: rgb(166, 123, 123);
     padding-left: 10px;
   }
   
@@ -89,7 +88,6 @@
     display: grid;
     grid-template-columns: 1fr 5fr 5fr 5fr 5fr;
     grid-template-rows: max-content;
-    background-color: rgb(166, 123, 123);
     overflow-y: scroll;
     height: 70vh;
     padding-left: 10px;
@@ -122,7 +120,6 @@
       display: grid;
       grid-template-columns: 1fr 2fr 3fr 3fr 2fr;
       grid-template-rows: max-content;
-      background-color: rgb(166, 123, 123);
       padding-left: 10px;
     }
   
