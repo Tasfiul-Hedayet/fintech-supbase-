@@ -22,11 +22,12 @@
   }
   
   .top-title > div {
-    background: url(../public/customer.png);
+    background: url(../public/product.png);
     background-size: cover;
     height: 50px;
     width: 50px;
   }
+  
   
   .nav-status {
     border: 1px solid black;
