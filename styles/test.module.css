@@ -1,0 +1,62 @@
+.page{
+    width: 100vw;
+    height: max-content;
+    min-height: 100vh;
+    background-color: aquamarine;
+}
+
+.top-bar{
+    width: 100vw;
+    height: max-content;
+    min-height: 15vh;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 12.5vw;
+    padding-left: 12.5vw;
+}
+
+.top-title{
+    display: flex;
+    align-items: center;
+    gap:20px;
+}
+
+.nav-button{
+    width: 100vw;
+    background-color: bisque;
+    height: max-content;
+    min-height: 5vh;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.add-box{
+    width: 100vw;
+    height: max-content;
+    background-color: brown;
+}
+
+.add-input{
+    width: 100vw;
+    height: max-content;
+    background-color: rgb(39, 204, 27);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    row-gap: 5px;
+    column-gap: 5px;
+}
+
+
+.save-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    gap: 10px;
+}

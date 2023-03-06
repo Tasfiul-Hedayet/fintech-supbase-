@@ -185,6 +185,8 @@ const Supplier = () => {
             }}
             options={options}
           />
+          
+          {/* <label for="Name">Name:</label> */}
           <input
             value={name}
             onChange={(e) => {
@@ -193,6 +195,7 @@ const Supplier = () => {
             type="text"
             placeholder="Name"
           ></input>
+          {/* <label for="Phone">Phone:</label> */}
           <input
             value={phone}
             onChange={(e) => {
