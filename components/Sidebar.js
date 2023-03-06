@@ -39,7 +39,7 @@ const Sidebar = () => {
                     Suppplier
                 </div>
 
-                <div className={styles['link']} onClick={() => { router.push('/product') }}>
+                <div className={styles['link']} onClick={() => { router.push('/add-product') }}>
                     Product
                 </div>
 
