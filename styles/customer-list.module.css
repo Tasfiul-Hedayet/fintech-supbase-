@@ -71,7 +71,7 @@
   
   .label {
     display: grid;
-    grid-template-columns: 1fr 5fr 5fr 5fr 5fr;
+    grid-template-columns: 1fr 5fr 5fr 5fr 5fr 5fr;
     /* grid-template-columns: 0.5fr 3fr 2fr 3fr 4fr; */
     grid-template-rows: max-content;
     padding-left: 10px;
@@ -86,7 +86,7 @@
   
   .show-list {
     display: grid;
-    grid-template-columns: 1fr 5fr 5fr 5fr 5fr;
+    grid-template-columns: 1fr 5fr 5fr 5fr 5fr 5fr;
     grid-template-rows: max-content;
     overflow-y: scroll;
     height: 70vh;

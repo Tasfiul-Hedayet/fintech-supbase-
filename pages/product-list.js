@@ -62,6 +62,9 @@ const Customer = () => {
             <h3>Product Name</h3>
           </div>
           <div>
+            <h3>Quantity</h3>
+          </div>
+          <div>
             <h3>Unit</h3>
           </div>
           <div>
@@ -91,6 +94,9 @@ const Customer = () => {
                 </div>
                 <div>
                   <p>{product.product}</p>
+                </div>
+                <div>
+                  <p>{product.quantity}</p>
                 </div>
                 <div>
                   <p>{product.unit}</p>

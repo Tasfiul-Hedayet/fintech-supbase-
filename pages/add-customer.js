@@ -100,7 +100,7 @@ const Customer = () => {
         </div>
         <div className={styles["save-button"]}>
         <button onClick={saveCustomer}>Save</button>
-        <button onClick={saveCustomer}> Save and add Another</button>
+        <button onClick={async () =>{ await saveCustomer(); router.push('/new-sales')}}> Save and Go to sales</button>
         </div>
       </div>
     </div>

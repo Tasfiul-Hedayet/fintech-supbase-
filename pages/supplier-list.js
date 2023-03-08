@@ -49,6 +49,9 @@ const Customer = () => {
             <h3>Sl</h3>
           </div>
           <div>
+            <h3>ID</h3>
+          </div>
+          <div>
             <h3>Name</h3>
           </div>
           <div>
@@ -67,6 +70,9 @@ const Customer = () => {
               <React.Fragment  key={index}>
                 <div>
                   <p>{index + 1}</p>
+                </div>
+                <div>
+                  <p>{supplier?.ID}</p>
                 </div>
                 <div>
                   <p>{supplier.name}</p>

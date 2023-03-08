@@ -123,6 +123,73 @@
     background-color: green;
     color: white;
   }
+
+  
+.sales-top {
+  background-color: rgb(31, 163, 97);
+  padding: 15px;
+  padding-left: 12.5vw;
+  padding-right: 12.5vw;
+}
+
+.sales-supplier {
+  display: flex;
+  gap: 10px;
+}
+
+.sales-supplier > p {
+  margin-top: 4px;
+  padding-left: 60px;
+  font-size: larger;
+}
+
+.sales-supplier-details {
+  display: flex;
+  gap: 20px;
+  font-size: larger;
+}
+
+.sales-supplier-details > p{
+  margin-top: 5px;
+}
+
+.sales-supplier-details > button {
+  background-color: red;
+  color: white;
+  height: 30px;
+  width: 20px;
+}
+
+.add-supplier-button {
+  background-color: rgb(171, 187, 171);
+  color: white;
+  height: 30px;
+  width: 20px;
+}
+
+.supplier-preview{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px;
+  border-bottom: 1px dotted;
+  
+}
+
+.supplier-dropdown {
+  background-color: rgb(255, 255, 255);
+  height: 20vh;
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+
+.supplier-search {
+  height: 30px;
+  width: 20vw;
+  padding-left: 10px;
+}
+
+
   
   @media only screen and (max-width: 412px) {
   
