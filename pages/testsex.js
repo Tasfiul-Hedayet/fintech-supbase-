@@ -257,6 +257,7 @@ const Sex = () => {
           </div>
         </div>
         <div className={styles["show-list"]}>
+          {JSON.stringify(productRows)}
           {productRows?.map((product, index) => {
             return (
               <div key={index}>
