@@ -432,7 +432,7 @@ const Sales = () => {
         <h1>New Sales</h1>
         <div className={styles["sales-top"]}>
           <div className={styles["sales-customer"]}>
-            <p>Search</p>
+            <p>Select Customer</p>
             <div>
               <input
                 className={styles["customer-search"]}
