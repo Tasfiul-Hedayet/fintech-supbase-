@@ -35,6 +35,10 @@ const Sex = () => {
     initializeProductRows();
   }, [products]);
 
+  useEffect(() => {
+    initializeProductRows();
+  }, []);
+
   function setEditing(index, editing) {
     let rows = [];
 
