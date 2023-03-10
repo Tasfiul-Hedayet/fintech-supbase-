@@ -152,6 +152,137 @@
   font-size: larger;
 }
 
+.sales-products-titles {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+.title-box {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.product-row {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+
+.product-info-box
+{
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.product-selector {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-selector > input {
+  width: 70%;
+}
+
+
+.product-preview{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px;
+  border-bottom: 1px dotted;
+  
+}
+
+.product-dropdown {
+  background-color: rgb(255, 255, 255);
+  height: 20vh;
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+
+.sales-bottom { 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+}
+
+.bottom-row{
+  width: 37.6vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  place-items: center;
+  margin-left: auto;
+  padding: 10px;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.bottom-row > p{
+  width: max-content;
+  display: flex;
+  font-size: larger;
+}
+
+
+.bottom-row > input{
+  width: 80%;
+  height: 40px;
+  border: none;
+  outline: none;
+  text-align: end;
+  padding-right: 10px;
+  border: 1px solid black;
+}
+
+.bottom-row > input:focus{
+
+  border: 4px solid green;
+}
+
+
+.remove-row{
+  background: url('../public/close-button.png');
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  border: none;
+  outline: none;
+}
+
+.add-row{
+  background: url('../public/plus.png');
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  border: none;
+  outline: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width: 412px) {
   .add-input {
     display: grid;
