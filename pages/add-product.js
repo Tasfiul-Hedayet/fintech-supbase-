@@ -274,6 +274,7 @@ const Product = () => {
             ></input>
           </div>
 
+
           <div>
             <label for="Selling">Selling Price:</label>
             <input
