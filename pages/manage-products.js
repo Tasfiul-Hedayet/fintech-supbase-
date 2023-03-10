@@ -170,7 +170,7 @@ const Customer = () => {
         selling: product.selling,
       })
       .match({ ID: product.ID });
-    // router.reload();
+    router.reload();
   }
 
   async function deleteProduct(index) {
@@ -208,9 +208,10 @@ const Customer = () => {
         </button>
         <button>Manage Product</button>
         <button
-        onClick={() => {
+          onClick={() => {
             router.push("/product-list");
-          }}>
+          }}
+        >
           Product List
         </button>
       </div>
@@ -352,6 +353,7 @@ const Customer = () => {
                   <button
                     onClick={async () => {
                       updateProduct(productRows[index]);
+                      alert("Save");
                     }}
                   >
                     Save
