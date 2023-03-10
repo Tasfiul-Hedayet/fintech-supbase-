@@ -265,7 +265,7 @@ const Customer = () => {
                 </div>
                 <div>
                   <input
-                    value={productRows[index].category}
+                    value={product.category}
                     onChange={(e) => {
                       changeCategory(e.target.value, index);
                     }}
@@ -273,7 +273,7 @@ const Customer = () => {
                 </div>
                 <div>
                   <input
-                    value={productRows[index].subcategory}
+                    value={product.subcategory}
                     onChange={(e) => {
                       changeSubCategory(e.target.value, index);
                     }}
@@ -281,7 +281,7 @@ const Customer = () => {
                 </div>
                 <div>
                   <input
-                    value={productRows[index].brand}
+                    value={product.brand}
                     onChange={(e) => {
                       changeBrand(e.target.value, index);
                     }}
@@ -289,7 +289,7 @@ const Customer = () => {
                 </div>
                 <div>
                   <input
-                    value={productRows[index].product}
+                    value={product.product}
                     onChange={(e) => {
                       changeProduct(e.target.value, index);
                     }}
@@ -297,7 +297,7 @@ const Customer = () => {
                 </div>
                 <div>
                   <input
-                    value={productRows[index].quantity}
+                    value={product.quantity}
                     onChange={(e) => {
                       changeQuantity(e.target.value, index);
                     }}
@@ -305,7 +305,7 @@ const Customer = () => {
                 </div>
                 <div>
                   <input
-                    value={productRows[index].unit}
+                    value={product.unit}
                     onChange={(e) => {
                       changeUnit(e.target.value, index);
                     }}
@@ -313,7 +313,7 @@ const Customer = () => {
                 </div>
                 <div>
                   <input
-                    value={productRows[index].purchase}
+                    value={product.purchase}
                     onChange={(e) => {
                       changePurchase(e.target.value, index);
                     }}
@@ -321,7 +321,7 @@ const Customer = () => {
                 </div>
                 <div>
                   <input
-                    value={productRows[index].selling}
+                    value={product.selling}
                     onChange={(e) => {
                       changeSelling(e.target.value, index);
                     }}
@@ -352,7 +352,7 @@ const Customer = () => {
                 <div>
                   <button
                     onClick={async () => {
-                      updateProduct(productRows[index]);
+                      updateProduct(product);
                       alert("Save");
                     }}
                   >
