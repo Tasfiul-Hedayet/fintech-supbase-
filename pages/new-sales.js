@@ -103,6 +103,7 @@ const Sales = () => {
   const [totalTax, setTotalTax] = useState(0);
   const [shippingCost, setShippingCost] = useState(0);
   const [paidAmount, setPaidAmount] = useState(0);
+  const [totalDiscount, setTotalDiscount] = useState(0);
 
   const [productRows, setProductRows] = useState([
     {
@@ -116,6 +117,84 @@ const Sales = () => {
       keyword: "",
     },
   ]);
+
+  function paidInFull() {
+    let total = calculateGrandTotal();
+    if (paidAmount < total) return;
+    setPaidAmount(total);
+  }
+
+  function UniqueSalesID() {
+    let timestamp = ((new Date().getTime() / 1000) | 0).toString(16);
+    let uuid = Math.random().toString(16).substr(2, 8);
+    return `${timestamp}${uuid}`.toUpperCase();
+  }
+
+  async function saveSalesInvoice() {
+    //  in a loop product id, name, product quantity, unit, rate, discount, total
+    // sales  discount
+    // total discount
+    // tax
+    // shipping
+    // grand total
+    // paid amount
+    // due
+
+    const products = [];
+
+    for (let i = 0; i < productRows.length; i++) {
+      let productFromDB = getProductById(productRows[i]?.productID);
+      if (!productFromDB) continue;
+
+      let total =
+        productFromDB.selling * productRows[i].quantity -
+        (productFromDB.selling *
+          productRows[i].quantity *
+          productRows[i].discount) /
+          100;
+
+      let product = {
+        ID: productFromDB.ID,
+        name: productFromDB.product,
+        quantity: productRows[i].quantity,
+        unit: productFromDB.unit,
+        rate: productFromDB.selling,
+        discount: productRows[i].discount,
+        total: total,
+      };
+      products.push(product);
+    }
+
+    let due =
+      paidAmount < calculateGrandTotal()
+        ? calculateGrandTotal() - paidAmount
+        : 0;
+    let grandTotal = calculateGrandTotal();
+    let salesID = UniqueSalesID();
+    let data = {
+      products: products,
+      salesDiscount: salesDiscount,
+      totalDiscount: totalDiscount,
+      shippingCost: shippingCost,
+      grandTotal: grandTotal,
+      paidAmount: paidAmount,
+      due: due,
+    };
+
+    let savedData = {
+      ID: salesID,
+      data: JSON.stringify(data),
+    }
+    // save data to database here
+
+    await supabase.from('invoice').upsert([savedData]);
+    let print = confirm("Inserted. Do you want to print?");
+    if (print) {
+      router.push(`/print/${salesID}`);
+    } else {
+      router.reload();
+    }
+  }
 
   function getProductById(ID) {
     for (let i = 0; i < products?.length; i++) {
@@ -286,9 +365,40 @@ const Sales = () => {
     return total;
   }
 
+  function calculateGrandTotal() {
+    let grandTotal = 0;
+    for (let i = 0; i < productRows?.length; i++) {
+      let product = getProductById(productRows[i]?.productID);
+      let selling = product?.selling;
+      let total = calculateTotal(selling, productRows[i].quantity, i);
+      grandTotal += total;
+    }
+    grandTotal = grandTotal - salesDiscount;
+    grandTotal += shippingCost;
+    grandTotal += totalTax;
+    return grandTotal;
+  }
+
+  function calculateTotalDiscount() {
+    let totalPercentageDiscount = 0;
+    for (let i = 0; i < productRows?.length; i++) {
+      let product = getProductById(productRows[i]?.productID);
+      if (!product) continue;
+      let selling = product?.selling;
+      let quantity = productRows[i].quantity;
+      let discount = productRows[i].discount;
+      let totalSellingPrice = selling * quantity;
+      let percentageDiscount = (totalSellingPrice * discount) / 100;
+      totalPercentageDiscount += percentageDiscount;
+      console.log("prod", product);
+    }
+    let total = totalPercentageDiscount + salesDiscount;
+    setTotalDiscount(total);
+  }
+
   useEffect(() => {
-    console.log("prod-rows", productRows);
-  }, [productRows]);
+    calculateTotalDiscount();
+  }, [productRows, salesDiscount]);
 
   useEffect(() => {
     setTimestamp(Date.now());
@@ -537,13 +647,14 @@ const Sales = () => {
 
             <div className={styles["bottom-row"]}>
               <p>Total Discount: </p>
-              <input placeholder="0.00" />
+              <input placeholder="0.00" value={totalDiscount} />
             </div>
 
             <div className={styles["bottom-row"]}>
               <p>Total Tax: </p>
               <input
                 placeholder="0.00"
+                value={totalTax}
                 onChange={(e) => {
                   if (e.target.value === "") {
                     setTotalTax(0);
@@ -559,6 +670,7 @@ const Sales = () => {
               <p>Shipping Cost: </p>
               <input
                 placeholder="0.00"
+                value={shippingCost}
                 onChange={(e) => {
                   if (e.target.value === "") {
                     setShippingCost(0);
@@ -572,10 +684,10 @@ const Sales = () => {
 
             <div className={styles["bottom-row"]}>
               <p>Grand Total: </p>
-              <input placeholder="0.00" />
+              <input placeholder="0.00" value={`${calculateGrandTotal()}`} />
             </div>
 
-            <div className={styles["bottom-row"]}>
+            {/* <div className={styles["bottom-row"]}>
               <p>Previous: </p>
               <input placeholder="0.00" />
             </div>
@@ -583,11 +695,12 @@ const Sales = () => {
             <div className={styles["bottom-row"]}>
               <p>Net Total: </p>
               <input placeholder="0.00" />
-            </div>
+            </div> */}
 
             <div className={styles["bottom-row"]}>
               <p>Paid Amount: </p>
               <input
+                value={paidAmount}
                 placeholder="0.00"
                 onChange={(e) => {
                   if (e.target.value === "") {
@@ -602,13 +715,45 @@ const Sales = () => {
 
             <div className={styles["bottom-row"]}>
               <p>Due: </p>
-              <input placeholder="0.00" />
+              <input
+                placeholder="0.00"
+                value={`${
+                  paidAmount < calculateGrandTotal()
+                    ? calculateGrandTotal() - paidAmount
+                    : 0
+                }`}
+              />
             </div>
 
             <div className={styles["bottom-row"]}>
               <p>Change: </p>
-              <input placeholder="0.00" />
+              <input
+                placeholder="0.00"
+                value={`${
+                  paidAmount > calculateGrandTotal()
+                    ? paidAmount - calculateGrandTotal()
+                    : 0
+                }`}
+              />
             </div>
+          </div>
+
+          <div className={styles["buttons"]}>
+            <button
+              onClick={() => {
+                paidInFull();
+              }}
+            >
+              Full Paid
+            </button>
+
+            <button
+              onClick={async () => {
+                await saveSalesInvoice();
+              }}
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>

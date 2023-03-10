@@ -55,7 +55,7 @@ const Sidebar = () => {
                     Customer
                 </div>
 
-                <div className={styles['link']} onClick={() => { router.push('/sales') }}>
+                <div className={styles['link']} onClick={() => { router.push('/new-sales') }}>
                     Sales Invoice
                 </div>
 

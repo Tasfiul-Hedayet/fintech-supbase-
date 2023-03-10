@@ -72,7 +72,7 @@
     width: 100vw;
     height: max-content;
     padding-top: 10vh;
-    padding-bottom: 10vh;
+    padding-bottom: 5vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding-left: 15vw;

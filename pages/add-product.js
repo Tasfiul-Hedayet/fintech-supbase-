@@ -123,7 +123,11 @@ const Product = () => {
 
       <div className={styles["nav-button"]}>
         <button>Add Product</button>
-        <button>Manage Product</button>
+        <button onClick={() => {
+            router.push("/manage-products");
+          }}>
+          Manage List
+        </button>
         <button
           onClick={() => {
             router.push("/product-list");
@@ -138,7 +142,7 @@ const Product = () => {
 
         <div className={styles["sales-top"]}>
           <div className={styles["sales-supplier"]}>
-          <p>Search</p>
+          <p>Select Supplier</p>
             <div >
               <input 
               className={styles["supplier-search"]}
@@ -199,6 +203,18 @@ const Product = () => {
           </div>
 
           <div>
+            <label for="unit">Unit:</label>
+            <input
+              value={unit}
+              onChange={(e) => {
+                setUnit(e.target.value);
+              }}
+              type="text"
+              placeholder="Unit"
+            ></input>
+          </div>
+
+          <div>
             <label for="Sub-Category">Sub-Category:</label>
             <input
               value={subcategory}
@@ -207,30 +223,6 @@ const Product = () => {
               }}
               type="text"
               placeholder="Sub-Category"
-            ></input>
-          </div>
-
-          <div>
-            <label for="Brand">Brand:</label>
-            <input
-              value={brand}
-              onChange={(e) => {
-                setBrand(e.target.value);
-              }}
-              type="text"
-              placeholder="Brand"
-            ></input>
-          </div>
-
-          <div>
-            <label for="Product">Product Name:</label>
-            <input
-              value={product}
-              onChange={(e) => {
-                setProduct(e.target.value);
-              }}
-              type="text"
-              placeholder="Product Name"
             ></input>
           </div>
 
@@ -247,14 +239,14 @@ const Product = () => {
           </div>
 
           <div>
-            <label for="unit">Unit:</label>
+            <label for="Brand">Brand:</label>
             <input
-              value={unit}
+              value={brand}
               onChange={(e) => {
-                setUnit(e.target.value);
+                setBrand(e.target.value);
               }}
               type="text"
-              placeholder="Unit"
+              placeholder="Brand"
             ></input>
           </div>
 
@@ -271,7 +263,19 @@ const Product = () => {
           </div>
 
           <div>
-            <label for="Selling">Selling:</label>
+            <label for="Product">Product Name:</label>
+            <input
+              value={product}
+              onChange={(e) => {
+                setProduct(e.target.value);
+              }}
+              type="text"
+              placeholder="Product Name"
+            ></input>
+          </div>
+
+          <div>
+            <label for="Selling">Selling Price:</label>
             <input
               value={selling}
               onChange={(e) => {
