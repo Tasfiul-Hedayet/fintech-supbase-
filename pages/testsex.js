@@ -259,7 +259,7 @@ const Sex = () => {
         <div className={styles["show-list"]}>
           {productRows?.map((product, index) => {
             return (
-              <React.Fragment key={index}>
+              <div key={index}>
                 <div>
                   <p>{index + 1}</p>
                 </div>
@@ -368,7 +368,7 @@ const Sex = () => {
                     Delete
                   </button>
                 </div>
-              </React.Fragment>
+              </div>
             );
           })}
         </div>
