@@ -260,7 +260,7 @@ const Sex = () => {
           {JSON.stringify(productRows)}
           {productRows?.map((product, index) => {
             return (
-              <div key={index}>
+              <React.Fragment key={index}>
                 <div>
                   <p>{index + 1}</p>
                 </div>
@@ -369,7 +369,7 @@ const Sex = () => {
                     Delete
                   </button>
                 </div>
-              </div>
+              </React.Fragment>
             );
           })}
         </div>
