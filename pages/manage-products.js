@@ -9,12 +9,15 @@ const Customer = () => {
   const [products, setProducts] = useState([]);
   const [productRows, setProductRows] = useState([]);
 
+  const [recalculate, toggleRecalculate] = useState(false);
+
   const router = useRouter();
 
   async function fetchProducts() {
     let { data, error } = await supabase.from("product").select("*");
     if (data) {
       setProducts(data);
+      toggleRecalculate(!recalculate);
     }
   }
 
@@ -32,8 +35,9 @@ const Customer = () => {
   }
 
   useEffect(() => {
+    console.log('ran');
     initializeProductRows();
-  }, [products]);
+  }, [products, recalculate]);
 
   function setEditing(index, editing) {
     let rows = [];
