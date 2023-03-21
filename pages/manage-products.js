@@ -17,6 +17,7 @@ const Customer = () => {
     let { data, error } = await supabase.from("product").select("*");
     if (data) {
       setProducts(data);
+      console.log('data', data);
       toggleRecalculate(!recalculate);
     }
   }
@@ -265,7 +266,7 @@ const Customer = () => {
         {console.log(productRows)}
           {productRows?.map((product, index) => {
             return (
-              <React.Fragment key={index}>
+              <div key={index}>
                 <div>
                   <p>{index + 1}</p>
                 </div>
@@ -374,7 +375,7 @@ const Customer = () => {
                     Delete
                   </button>
                 </div>
-              </React.Fragment>
+              </div>
             );
           })}
         </div>
