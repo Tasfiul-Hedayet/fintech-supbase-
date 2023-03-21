@@ -17,7 +17,6 @@ const Customer = () => {
     let { data, error } = await supabase.from("product").select("*");
     if (data) {
       setProducts(data);
-      console.log('data', data);
       toggleRecalculate(!recalculate);
     }
   }
@@ -27,12 +26,14 @@ const Customer = () => {
   }, []);
 
   function initializeProductRows() {
+    let rows = [];
     for (let i = 0; i < products.length; i++) {
-      productRows.push({
+      rows.push({
         ...products[i],
         isEditing: false,
       });
     }
+    setProductRows(rows);
   }
 
   useEffect(() => {
@@ -262,11 +263,9 @@ const Customer = () => {
           </div>
         </div>
         <div className={styles["show-list"]}>
-        {JSON.stringify(productRows)}
-        {console.log(productRows)}
           {productRows?.map((product, index) => {
             return (
-              <div key={index}>
+              <React.Fragment key={index}>
                 <div>
                   <p>{index + 1}</p>
                 </div>
@@ -375,7 +374,7 @@ const Customer = () => {
                     Delete
                   </button>
                 </div>
-              </div>
+              </React.Fragment>
             );
           })}
         </div>
