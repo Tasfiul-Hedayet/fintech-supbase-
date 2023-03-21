@@ -257,6 +257,8 @@ const Customer = () => {
           </div>
         </div>
         <div className={styles["show-list"]}>
+        {JSON.stringify(productRows)}
+        {console.log(productRows)}
           {productRows?.map((product, index) => {
             return (
               <React.Fragment key={index}>
