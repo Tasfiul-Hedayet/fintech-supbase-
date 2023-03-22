@@ -373,9 +373,11 @@ const Sales = () => {
       let total = calculateTotal(selling, productRows[i].quantity, i);
       grandTotal += total;
     }
+
+    grandTotal = grandTotal + ((grandTotal * totalTax) / 100);
     grandTotal = grandTotal - salesDiscount;
-    grandTotal += shippingCost;
-    grandTotal += totalTax;
+    grandTotal = grandTotal + shippingCost;
+
     return grandTotal;
   }
 
@@ -651,7 +653,7 @@ const Sales = () => {
             </div>
 
             <div className={styles["bottom-row"]}>
-              <p>Total Tax: </p>
+              <p>Total Tax (%): </p>
               <input
                 placeholder="0.00"
                 value={totalTax}
