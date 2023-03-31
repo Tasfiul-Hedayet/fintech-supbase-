@@ -84,12 +84,6 @@ const Print = () => {
 
     return (
         <div>
-            <p>
-                Print {JSON.stringify(sales_id)}
-            </p>
-            <p>
-                {JSON.stringify(sales)}
-            </p>
             <div className={styles["print-box"]}>
                 <Document sale={sales} ref={documentRef} />
 
