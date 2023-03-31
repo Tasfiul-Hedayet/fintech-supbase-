@@ -61,7 +61,6 @@ const Supplier = () => {
         break;
       }
     }
-
     return isEditing;
   }
 
