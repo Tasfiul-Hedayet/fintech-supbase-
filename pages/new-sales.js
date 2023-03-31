@@ -120,7 +120,6 @@ const Sales = () => {
 
   function paidInFull() {
     let total = calculateGrandTotal();
-    if (paidAmount < total) return;
     setPaidAmount(total);
   }
 
@@ -175,10 +174,13 @@ const Sales = () => {
       products: products,
       salesDiscount: salesDiscount,
       totalDiscount: totalDiscount,
+      totalTax: totalTax,
       shippingCost: shippingCost,
       grandTotal: grandTotal,
       paidAmount: paidAmount,
       due: due,
+      customer: selectedCustomer,
+      date: Date.now(),
     };
 
     let savedData = {
@@ -421,7 +423,6 @@ const Sales = () => {
 
       <div className={styles["nav-button"]}>
         <button>Add Sales</button>
-        <button>Manage Sales</button>
         <button
           onClick={() => {
             router.push("/sales-list");

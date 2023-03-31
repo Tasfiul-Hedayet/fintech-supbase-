@@ -8,7 +8,7 @@ import styles from '../../styles/print.module.css'
 const Document = React.forwardRef(({ sale }, ref) => (
 
     <div ref={ref} className={styles["document"]}>
-        
+
         <div className={styles["document-title"]}>
             <h1>payment invoice</h1>
         </div>
@@ -41,11 +41,14 @@ const Document = React.forwardRef(({ sale }, ref) => (
         <div className={styles["print-below"]}>
             <h3>{`sales discount - ${sale?.data?.salesDiscount}`}</h3>
             <h3>{`total discount - ${sale?.data?.totalDiscount}`}</h3>
+            <h3>{`Total Tax (%) - ${sale?.data?.totalTax}`}</h3>
             <h3>{`shipping cost - ${sale?.data?.shippingCost}`}</h3>
             <h3>{`grand total - ${sale?.data?.grandTotal}`}</h3>
             <h3>{`paid amount - ${sale?.data?.paidAmount}`}</h3>
             <h3>{`due - ${sale?.data?.due}`}</h3>
-
+            <h3>{`date - ${sale?.data?.date}`}</h3>
+            <h3>{`customer name - ${sale?.data?.customer?.name}`}</h3>
+            <h3>{`customer phone - ${sale?.data?.customer?.phone}`}</h3>
             <p className={styles['powered-by']}>Powered by - WHOAREWE, 017xxxxxxxx</p>
         </div>
     </div>
@@ -90,7 +93,7 @@ const Print = () => {
                 <div className={styles["buttons"]}>
                     <button
                         onClick={() => {
-                            setType(PAGE_TYPES.ADD);
+                            router.push('/new-sales')
                         }}
                     >
                         {" "}
