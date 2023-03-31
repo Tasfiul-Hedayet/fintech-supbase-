@@ -45,7 +45,7 @@ const Customer = () => {
 
       <div className={styles["nav-button"]}>
         <button>Add Customer</button>
-        <button>Manage Customer</button>
+        <button onClick={() => { router.push('/manage-customer') }}>Manage Customer</button>
         <button onClick={() => { router.push('/customer-list') }}>List Customer</button>
       </div>
       <div className={styles["add-box"]}>

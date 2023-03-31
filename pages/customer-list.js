@@ -39,7 +39,7 @@ const Customer = () => {
         >
           Add Customer{" "}
         </button>
-        <button>Manage Customer</button>
+        <button onClick={() => { router.push('/manage-customer') }}>Manage Customer</button>
         <button>List Customer</button>
       </div>
       <div className={styles["add-box"]}>
