@@ -44,9 +44,9 @@ const Login = () => {
             <div className={styles['auth-box']}>
                 <h1 className={styles['title']}>Login</h1>
                 <h3 className={styles['label']}>Username</h3>
-                <input type="text" value={username} onChange={handleUserName} placeholder='username'></input>
+                <input type="text" value={username} onChange={handleUserName} placeholder='Username'></input>
                 <h3 className={styles['label']}>Password</h3>
-                <input type="text" value={password} onChange={handlePassword} placeholder='password'></input>
+                <input type="password" value={password} onChange={handlePassword} placeholder='Password'></input>
                 {
                     error &&
                     <p className={styles['error']}>{error}</p>
