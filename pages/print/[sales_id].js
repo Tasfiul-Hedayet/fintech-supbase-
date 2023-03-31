@@ -8,9 +8,7 @@ import styles from '../../styles/print.module.css'
 const Document = React.forwardRef(({ sale }, ref) => (
 
     <div ref={ref} className={styles["document"]}>
-        {
-            console.log('ah', sale)
-        }
+        
         <div className={styles["document-title"]}>
             <h1>payment invoice</h1>
         </div>
@@ -19,10 +17,12 @@ const Document = React.forwardRef(({ sale }, ref) => (
             <div>Time</div>
         </div>
         <div className={styles["print"]}>
-            <div>{"Quantity"}</div>
-            <div>{"Item Name"}</div>
-            <div>{"Price"}</div>
-            <div>{"Total Price"}</div>
+            <div>{"name"}</div>
+            <div>{"quantity"}</div>
+            <div>{"unit"}</div>
+            <div>{"rate"}</div>
+            <div>{"discount"}</div>
+            <div>{"total"}</div>
 
             {sale?.data?.products.map((item, index) => {
                 return (
@@ -37,17 +37,15 @@ const Document = React.forwardRef(({ sale }, ref) => (
                 );
             })}
         </div>
-        <div div className={styles["print-below"]}>
-            <h3>{`Subtotal - ${sale?.data?.subTotal}`}</h3>
-            <h3>{`Caring cost - ${sale?.data?.caring}`}</h3>
-            <h3>{`Transportation cost - ${sale?.data?.transportation}`}</h3>
-            <h3>{`Discount - ${sale?.data?.discount}`}</h3>
+        {/* salesDiscount":0,"totalDiscount":0,"shippingCost":0,"grandTotal":0,"paidAmount":0,"due":0} */}
+        <div className={styles["print-below"]}>
+            <h3>{`sales discount - ${sale?.data?.salesDiscount}`}</h3>
+            <h3>{`total discount - ${sale?.data?.totalDiscount}`}</h3>
+            <h3>{`shipping cost - ${sale?.data?.shippingCost}`}</h3>
+            <h3>{`grand total - ${sale?.data?.grandTotal}`}</h3>
+            <h3>{`paid amount - ${sale?.data?.paidAmount}`}</h3>
+            <h3>{`due - ${sale?.data?.due}`}</h3>
 
-            <h3>{`Reference - ${sale?.data?.reference}`}</h3>
-
-            <h3>{`Signature - ${sale?.data?.signature}`}</h3>
-
-            <h3>{`Net Total: - ${sale?.data?.total}`}</h3>
             <p className={styles['powered-by']}>Powered by - WHOAREWE, 017xxxxxxxx</p>
         </div>
     </div>
@@ -65,7 +63,14 @@ const Print = () => {
 
     async function fetchSales(saleID) {
         let { data, error } = await supabase.from("invoice").select("*").match({ ID: sales_id });
-        if (data) setSales(data);
+        if (data[0]) {
+            let main_data = JSON.parse(data[0]?.data);
+            let newData = {
+                salesID: data[0]?.salesID,
+                data: main_data
+            }
+            setSales(newData)
+        }
     }
     useEffect(() => {
         if (sales_id) {
