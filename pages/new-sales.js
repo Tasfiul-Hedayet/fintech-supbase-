@@ -34,8 +34,10 @@ function CustomerDropDown({
                 setIsOpen(false);
               }}
             >
+
               <h3>{customer?.name}</h3>
               <p>{customer?.phone}</p>
+              <p>{customer?.balance}</p>
             </div>
           );
         })}
@@ -186,10 +188,10 @@ const Sales = () => {
     let savedData = {
       ID: salesID,
       data: JSON.stringify(data),
-    }
+    };
     // save data to database here
 
-    await supabase.from('invoice').upsert([savedData]);
+    await supabase.from("invoice").upsert([savedData]);
     let print = confirm("Inserted. Do you want to print?");
     if (print) {
       router.push(`/print/${salesID}`);
@@ -376,7 +378,7 @@ const Sales = () => {
       grandTotal += total;
     }
 
-    grandTotal = grandTotal + ((grandTotal * totalTax) / 100);
+    grandTotal = grandTotal + (grandTotal * totalTax) / 100;
     grandTotal = grandTotal - salesDiscount;
     grandTotal = grandTotal + shippingCost;
 
@@ -409,6 +411,11 @@ const Sales = () => {
     fetchProducts();
     fetchCustomers();
   }, []);
+
+  function getSelectedCustomerBalance(){
+    console.log('balance koi', selectedCustomer)
+    return selectedCustomer?.balance;
+  }
 
   return (
     <div className={styles["page"]}>
@@ -684,6 +691,12 @@ const Sales = () => {
                 }}
               />
             </div>
+            {selectedCustomer && (
+              <div className={styles["bottom-row"]}>
+                <p>Previous: </p>
+                <input placeholder="0.00" onChange={()=>{}} value={`${selectedCustomer?.balance}`} />
+              </div>
+            )}
 
             <div className={styles["bottom-row"]}>
               <p>Grand Total: </p>
