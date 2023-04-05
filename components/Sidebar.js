@@ -43,13 +43,13 @@ const Sidebar = () => {
                     Product
                 </div>
 
-                <div className={styles['link']} onClick={() => { router.push('/purchase') }}>
+                <div className={styles['link']} onClick={() => { router.push('/add-purchase') }}>
                     Purchase Invoice
                 </div>
 
-                <div className={styles['link']} onClick={() => { router.push('/payment') }}>
+                {/* <div className={styles['link']} onClick={() => { router.push('/payment') }}>
                     Suppplier Payment
-                </div>
+                </div> */}
 
                 <div className={styles['link']} onClick={() => { router.push('/add-customer') }}>
                     Customer
