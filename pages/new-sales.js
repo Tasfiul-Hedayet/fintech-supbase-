@@ -634,7 +634,7 @@ const Sales = () => {
 
           <div className={styles["sales-bottom"]}>
             <div className={styles["bottom-row"]}>
-              <p>Sale Discount:</p>
+              <p>Flat Discount:</p>
               <input
                 placeholder="0.00"
                 value={salesDiscount}
