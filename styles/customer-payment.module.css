@@ -1,0 +1,67 @@
+.page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    padding: 20px;
+    width: 80%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date_container {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.payment_type_container {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.amount_container {
+    display: flex;
+    gap: 10px;
+}
+
+.input_main {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+}
+
+.input_main > input {
+    width: 200px;
+}
+
+.pay_button {
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.customer-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px;
+    border-bottom: 1px dotted;
+    width: 200px;
+}
+
+.customer-dropdown {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    height: 20vh;
+    max-height: 50vh;
+    overflow-y: scroll;
+}

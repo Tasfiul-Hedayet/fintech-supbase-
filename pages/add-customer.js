@@ -15,13 +15,14 @@ const Customer = () => {
 
   async function saveCustomer() {
     console.log(name, phone, address, description);
+    let balance = 0;
     alert("Alert");
 
     setLoading(true);
     // let { data, error } = await supabase.from('users').select('*').match({ username: username, password: password });
     await supabase
       .from("customers")
-      .insert([{ name, phone, address, description }]);
+      .insert([{ name, phone, address, description, balance }]);
     // clear input after submit
     setLoading(false);
     setName("");
