@@ -70,7 +70,7 @@ const Sidebar = () => {
             router.push("/customer_ledger");
           }}
         >
-          customer_ledger
+          Customer Ledger
         </div>
         
 
@@ -80,7 +80,7 @@ const Sidebar = () => {
             router.push("/cash_ledger");
           }}
         >
-          cash_ledger
+          Cash Ledger
         </div>
 
         <div
@@ -89,7 +89,7 @@ const Sidebar = () => {
             router.push("/sales_ledger");
           }}
         >
-          sales_ledger
+          Sales Ledger
         </div>
 
         {/* <div className={styles['link']} onClick={() => { router.push('/payment') }}>
