@@ -11,6 +11,7 @@ const Sidebar = () => {
   }
 
   let [isToggled, setToggled] = useState(false);
+
   function toggle() {
     setToggled((current) => !current);
   }
@@ -43,7 +44,7 @@ const Sidebar = () => {
             router.push("/add-supplier");
           }}
         >
-          Suppplier
+          Supplier
         </div>
 
         <div
@@ -72,7 +73,6 @@ const Sidebar = () => {
         >
           Customer Ledger
         </div>
-        
 
         <div
           className={styles["link"]}

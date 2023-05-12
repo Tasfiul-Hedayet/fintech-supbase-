@@ -1,57 +1,55 @@
 .sidebar {
-    position: absolute;
-    z-index: 100;
-    height: 100%;
-    min-width: 12vw;
-    width: max-content;
-    padding: 20px;
-    background-color: #202020;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-size: larger;
+  position: absolute;
+  z-index: 100;
+  height: 100%;
+  min-width: 12vw;
+  width: max-content;
+  padding: 20px;
+  background-color: #202020;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: larger;
 }
 
 .open-sidebar {
-    position: absolute;
-    z-index: 100;
-    width: max-content;
-    padding: 20px;
-    color: white;
-    /* background-color: rebeccapurple; */
+  position: absolute;
+  z-index: 100;
+  width: max-content;
+  padding: 20px;
+  color: white;
+  /* background-color: rebeccapurple; */
 }
 
 .menu-open-button {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    background-color: white;
-    margin-bottom: 10px;
-    background: url('../public/menu-button.png');
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: white;
+  margin-bottom: 10px;
+  background: url("../public/menu-button.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
 }
-
-
 
 .menu-close-button {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    background-color: white;
-    margin-bottom: 10px;
-    background: url('../public/close-button.png');
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: white;
+  margin-bottom: 10px;
+  background: url("../public/close-button.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
 }
 
-.title-link{
-    padding-bottom: 8px;
+.title-link {
+  padding-bottom: 8px;
 }
 
-.link{
-    cursor: pointer;
+.link {
+  cursor: pointer;
 }
