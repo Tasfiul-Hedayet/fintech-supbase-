@@ -297,12 +297,18 @@ const Sales = () => {
     if (data) {
       setProducts(data);
     }
+    if(error){
+      console.log(error);
+    }
   }
 
   async function fetchCustomers() {
     let { data, error } = await supabase.from("customers").select("*");
     if (data) {
       setCustomers(data);
+    }
+    if(error){
+      console.log(error);
     }
   }
 
