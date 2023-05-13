@@ -43,7 +43,7 @@ function CustomerDropDown({
 }
 
 const CustomerPayment = () => {
-    const router = useRouter();
+  const router = useRouter();
 
   const [customers, setCustomers] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
@@ -96,34 +96,31 @@ const CustomerPayment = () => {
     return `${timestamp}${uuid}`.toUpperCase();
   }
 
-
-
   async function buttonPressed() {
     let salesID = UniqueSalesID();
     let date = Date.now();
     await saveToCashLedger(salesID, date);
     // update the customer balance
-    let newBalance = selectedCustomer.balance - paidAmount;
+    let newBalance = selectedCustomer?.balance - paidAmount;
     await supabase
       .from("customers")
       .update({ balance: newBalance })
-      .eq("ID", selectedCustomer.ID);
+      .eq("ID", selectedCustomer?.ID);
     // update the store balance
     await updateStoresBalance();
     let print = confirm("Inserted. Do you want to print?");
     if (print) {
-        router.reload();
-        //router.push(`/print/${salesID}`);
-      } else {
-        router.reload();
-      }
+      router.reload();
+      //router.push(`/print/${salesID}`);
+    } else {
+      router.reload();
+    }
   }
 
   useEffect(() => {
     setTimestamp(Date.now());
     fetchCustomers();
   }, []);
-
 
   return (
     <>
@@ -137,11 +134,10 @@ const CustomerPayment = () => {
           </div>
           <div className={styles.payment_type_container}>
             <p>Payment type:</p>
-            <input placeholder="Payment type" type="text" />
+            <input placeholder="Cash / Bank" type="text" />
           </div>
           <div className={styles.input_main}>
             <div>
-              {selectedCustomer && <p>Customer : {selectedCustomer.name}</p>}
               <input
                 className={styles["customer-search"]}
                 value={customerSearchKeyword}
@@ -167,6 +163,7 @@ const CustomerPayment = () => {
                 setSelectedCustomer={setSelectedCustomer}
                 setIsOpen={setIsCustomerDropDownOpen}
               />
+              {selectedCustomer && <p>Customer : {selectedCustomer.name}</p>}
             </div>
             <p> Due: {selectedCustomer?.balance} </p>
             <div className={styles.amount_container}>

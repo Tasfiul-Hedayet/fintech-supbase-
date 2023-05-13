@@ -26,7 +26,7 @@ const Customer = () => {
       <div className={styles["top-bar"]}>
         <div className={styles["top-title"]}>
           <div></div>
-          <h1>cash_ledger</h1>
+          <h1>Cash ledger</h1>
         </div>
         <div className={styles["nav-status"]}>Home/cash_ledger</div>
       </div>
@@ -50,7 +50,7 @@ const Customer = () => {
       </div>
 
       <div className={styles["add-box"]}>
-        <h1>customer_ledger</h1>
+        <h1>Cash ledger</h1>
         <div className={styles["label"]}>
           <div>
             <h3>Sl</h3>
@@ -67,6 +67,7 @@ const Customer = () => {
           <div>
             <h3>outgoing</h3>
           </div>
+
         </div>
 
         <div className={styles["show-list"]}>

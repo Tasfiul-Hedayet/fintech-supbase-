@@ -191,7 +191,7 @@
 
 
   
-  @media only screen and (max-width: 412px) {
+@media only screen and (max-width: 412px) {
   
     .add-input {
       display: grid;
