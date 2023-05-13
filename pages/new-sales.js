@@ -34,7 +34,6 @@ function CustomerDropDown({
                 setIsOpen(false);
               }}
             >
-
               <h3>{customer?.name}</h3>
               <p>{customer?.phone}</p>
               <p>{customer?.balance}</p>
