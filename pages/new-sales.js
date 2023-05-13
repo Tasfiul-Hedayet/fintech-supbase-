@@ -92,7 +92,7 @@ const Sales = () => {
   const router = useRouter();
 
   const [customers, setCustomers] = useState([]);
-
+  
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [products, setProducts] = useState([]);
   const [timestamp, setTimestamp] = useState(null);
@@ -131,7 +131,6 @@ const Sales = () => {
   }
 
   async function saveSalesInvoice() {
-
     const products = [];
 
     for (let i = 0; i < productRows.length; i++) {
@@ -143,7 +142,7 @@ const Sales = () => {
         (productFromDB.selling *
           productRows[i].quantity *
           productRows[i].discount) /
-        100;
+          100;
 
       let product = {
         ID: productFromDB.ID,
@@ -180,14 +179,15 @@ const Sales = () => {
       ID: salesID,
       data: JSON.stringify(data),
     };
+
     // save data to database here
 
     await supabase.from("invoice").upsert([savedData]);
 
-
-
-    let credit = 0, balance = 0, debit = 0, description = "";
-
+    let credit = 0,
+      balance = 0,
+      debit = 0,
+      description = "";
 
     balance = selectedCustomer ? selectedCustomer.balance : 0;
     let subtotal = grandTotal - balance;
@@ -200,16 +200,13 @@ const Sales = () => {
         balance = balance - extraPaid;
         description = `credit for invoice : ${salesID} `;
       }
-    }
-    else {
+    } else {
       let lessPaid = subtotal - paidAmount;
       debit = lessPaid;
       credit = paidAmount;
       description = `debit for invoice : ${salesID} `;
       balance = balance + lessPaid;
     }
-
-
 
     let date = Date.now();
 
@@ -220,11 +217,10 @@ const Sales = () => {
       credit: 0,
       balance: selectedCustomer?.balance + debit,
       date: date,
-    }
+    };
 
     // add the ledger to database
     await supabase.from("customer_ledger").upsert([customerLedger]);
-
 
     customerLedger = {
       description: description,
@@ -233,16 +229,16 @@ const Sales = () => {
       credit: credit,
       balance: balance,
       date: date,
-    }
+    };
 
     // add the ledger to database
     await supabase.from("customer_ledger").upsert([customerLedger]);
 
-
-
     // update the customer balance
-    await supabase.from("customers").update({ balance: balance }).eq("ID", selectedCustomer.ID);
-
+    await supabase
+      .from("customers")
+      .update({ balance: balance })
+      .eq("ID", selectedCustomer?.ID);
 
     // add the paidAmmoount to the cash ledger
     let cashLedger = {
@@ -255,14 +251,20 @@ const Sales = () => {
     // add the sales to the sales ledger
 
     // get from sales table
-    let { data: storeData, error } = await supabase.from("store").select("*").eq("ID", "store");
+    let { data: storeData, error } = await supabase
+      .from("store")
+      .select("*")
+      .eq("ID", "store");
     let store = storeData[0];
     let salesLedgerBalance = store.store_balance;
 
     let salesLedgerCredit = grandTotal - selectedCustomer?.balance;
     let newSalesLedgerBalance = salesLedgerCredit + salesLedgerBalance;
 
-    await supabase.from("store").update({ store_balance: newSalesLedgerBalance }).eq("ID", "store");
+    await supabase
+      .from("store")
+      .update({ store_balance: newSalesLedgerBalance })
+      .eq("ID", "store");
 
     let salesLedger = {
       debit: 0,
@@ -272,7 +274,6 @@ const Sales = () => {
       invoice: salesID,
     };
     await supabase.from("sales_ledger").upsert([salesLedger]);
-
 
     let print = confirm("Inserted. Do you want to print?");
     if (print) {
@@ -498,7 +499,7 @@ const Sales = () => {
   }, []);
 
   function getSelectedCustomerBalance() {
-    console.log('balance koi', selectedCustomer)
+    console.log("balance koi", selectedCustomer);
     return selectedCustomer?.balance;
   }
 
@@ -779,7 +780,11 @@ const Sales = () => {
             {selectedCustomer && (
               <div className={styles["bottom-row"]}>
                 <p>Previous: </p>
-                <input placeholder="0.00" onChange={() => { }} value={`${selectedCustomer?.balance}`} />
+                <input
+                  placeholder="0.00"
+                  onChange={() => {}}
+                  value={`${selectedCustomer?.balance}`}
+                />
               </div>
             )}
 
@@ -818,10 +823,11 @@ const Sales = () => {
               <p>Due: </p>
               <input
                 placeholder="0.00"
-                value={`${paidAmount < calculateGrandTotal()
-                  ? calculateGrandTotal() - paidAmount
-                  : 0
-                  }`}
+                value={`${
+                  paidAmount < calculateGrandTotal()
+                    ? calculateGrandTotal() - paidAmount
+                    : 0
+                }`}
               />
             </div>
 
@@ -829,10 +835,11 @@ const Sales = () => {
               <p>Change: </p>
               <input
                 placeholder="0.00"
-                value={`${paidAmount > calculateGrandTotal()
-                  ? paidAmount - calculateGrandTotal()
-                  : 0
-                  }`}
+                value={`${
+                  paidAmount > calculateGrandTotal()
+                    ? paidAmount - calculateGrandTotal()
+                    : 0
+                }`}
               />
             </div>
           </div>
