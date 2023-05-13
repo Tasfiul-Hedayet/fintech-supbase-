@@ -168,7 +168,7 @@ const CustomerPayment = () => {
                 setIsOpen={setIsCustomerDropDownOpen}
               />
             </div>
-            <p>Due: {selectedCustomer?.balance} </p>
+            <p> Due: {selectedCustomer?.balance} </p>
             <div className={styles.amount_container}>
               <p>Amount: </p>
               <input
