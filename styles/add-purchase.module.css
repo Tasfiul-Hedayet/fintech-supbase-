@@ -1,0 +1,352 @@
+.page {
+    width: 100vw;
+    height: max-content;
+    min-height: 100vh;
+  }
+  
+  .top-bar {
+    width: 100vw;
+    height: max-content;
+    min-height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 12.5vw;
+    padding-left: 12.5vw;
+  }
+  
+  .top-title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .top-title > div {
+    background: url(../public/product.png);
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+  }
+  
+  .nav-status {
+    border: 1px solid black;
+  }
+  
+  .nav-button {
+    width: 100vw;
+    height: max-content;
+    min-height: 5vh;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .nav-button > button {
+    border: none;
+    outline: none;
+    background-color: yellow;
+    color: black;
+    padding: 10px;
+  }
+  
+  .nav-button > button:hover {
+    background-color: green;
+    color: white;
+  }
+  
+  .sales-box {
+    width: 100vw;
+    height: max-content;
+    overflow-x: hidden;
+  }
+  
+  .sales-box > h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+  }
+  
+  .sales-top {
+    background-color: rgb(31, 163, 97);
+    padding: 15px;
+    padding-left: 12.5vw;
+    padding-right: 12.5vw;
+    overflow-x: hidden;
+  }
+  
+  .sales-customer {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .sales-customer > p {
+    margin-top: 4px;
+    font-size: larger;
+    overflow-x: hidden;
+  }
+  
+  .sales-customer-details {
+    display: flex;
+    gap: 20px;
+    font-size: larger;
+  }
+  
+  .sales-customer-details > p {
+    margin-top: 5px;
+  }
+  
+  .sales-customer-details > button {
+    background-color: red;
+    color: white;
+    height: 30px;
+    width: 20px;
+    cursor: pointer;
+  }
+  
+  .add-customer-button {
+    background-color: green;
+    color: white;
+    height: 30px;
+    width: 20px;
+    cursor: pointer;
+  }
+  
+  .customer-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px;
+    border-bottom: 1px dotted;
+  }
+  
+  .customer-dropdown {
+    background-color: rgb(255, 255, 255);
+    height: 20vh;
+    max-height: 50vh;
+    overflow-y: scroll;
+  }
+  
+  .customer-search {
+    height: 30px;
+    width: 20vw;
+    padding-left: 10px;
+  }
+  
+  .payment {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: larger;
+    overflow-x: hidden;
+  }
+  
+  .payment > input {
+    height: 30px;
+    width: 20vw;
+    padding-left: 10px;
+  }
+  
+  .date {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: larger;
+  }
+  
+  .sales-products-titles {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .title-box {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+  
+  .product-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .product-info-box {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+  
+  .product-info-box input {
+    width: 70%;
+    height: 40px;
+    padding-left: 10px;
+  }
+  
+  .product-selector {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .product-selector > input {
+    width: 70%;
+  }
+  
+  .product-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px;
+    border-bottom: 1px dotted;
+  }
+  
+  .product-dropdown {
+    background-color: rgb(255, 255, 255);
+    height: 20vh;
+    max-height: 50vh;
+    overflow-y: scroll;
+    bottom: 0;
+    border: 1px solid black;
+    margin-top: 10px;
+  }
+  
+  .sales-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+  }
+  
+  .bottom-row {
+    width: 37.5vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    place-items: center;
+    margin-left: auto;
+    padding: 10px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+  
+  .bottom-row > p {
+    width: max-content;
+    display: flex;
+    font-size: larger;
+  }
+  
+  .bottom-row > input {
+    width: 80%;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    border: 1px solid black;
+  }
+  
+  .bottom-row > input:focus {
+    border: 4px solid green;
+  }
+  
+  .remove-row {
+    background: url("../public/close-button.png");
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .add-row {
+    background: url("../public/plus.png");
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .buttons button {
+    padding: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: none;
+    outline: none;
+    background-color: #3edc3e;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+  }
+  
+  @media only screen and (max-width: 412px) {
+    .add-input {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  
+    .add-input > div > label {
+      min-width: 25vw;
+      text-align: end;
+    }
+  
+    .top-bar {
+      padding-top: 10vh;
+      padding-bottom: 5vh;
+    }
+  
+    .top-title > h1 {
+      font-size: medium;
+      padding-right: 12px;
+    }
+  
+    .add-input {
+      padding-top: 5vh;
+      padding-bottom: 5vh;
+    }
+  }
+  
+  @media only screen and (min-width: 413px) and (max-width: 1060px) {
+    .add-input {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .add-input > div > label {
+      min-width: 20vw;
+      text-align: end;
+    }
+  
+    .top-bar {
+      padding-top: 10vh;
+      padding-bottom: 5vh;
+    }
+  
+    .top-title > h1 {
+      font-size: large;
+      padding-right: 12px;
+    }
+  
+    .add-input {
+      padding-top: 5vh;
+      padding-bottom: 5vh;
+    }
+  }
+  

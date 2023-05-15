@@ -14,7 +14,6 @@ const Payment = () => {
   const [total, setTotal] = useState("");
   const [signature, setSignature] = useState("");
   const [reference, SetReference] = useState("");
-
   const [isLoading, setLoading] = useState(false);
 
   async function savePurchase() {

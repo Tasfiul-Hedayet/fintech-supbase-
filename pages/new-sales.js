@@ -229,6 +229,7 @@ const Sales = () => {
       credit: credit,
       balance: balance,
       date: date,
+      customer_id: selectedCustomer?.ID,
     };
 
     // add the ledger to database
@@ -256,8 +257,7 @@ const Sales = () => {
       .select("*")
       .eq("ID", "store");
     let store = storeData[0];
-    let salesLedgerBalance = store.store_balance;
-
+    let salesLedgerBalance = store?.store_balance;
     let salesLedgerCredit = grandTotal - selectedCustomer?.balance;
     let newSalesLedgerBalance = salesLedgerCredit + salesLedgerBalance;
 

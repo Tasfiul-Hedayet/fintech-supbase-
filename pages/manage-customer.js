@@ -8,9 +8,7 @@ import { useRouter } from "next/router";
 const Supplier = () => {
   const [customers, setCustomers] = useState([]);
   const [customersRows, setCustomersRows] = useState([]);
-
   const [recalculate, toggleRecalculate] = useState(false);
-
   const router = useRouter();
 
   async function fetchProducts() {
@@ -112,8 +110,7 @@ const Supplier = () => {
     setCustomersRows(rows);
   }
 
-
-
+  
   async function updateCustomers(customers) {
     console.log(customers);
     await supabase

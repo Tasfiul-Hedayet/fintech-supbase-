@@ -4,13 +4,13 @@ import formatDate from "@/utils/formatDateFromTimeStamp";
 import is_numeric from "@/utils/isNumeric";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import styles from "../styles/new-sales.module.css";
+import styles from "../styles/add-purchase.module.css";
 
-function CustomerDropDown({
+function SupplierDropDown({
   isOpen,
-  customers,
+  suppliers,
   keyword,
-  setSelectedCustomer,
+  setSelectedSupplier,
   setIsOpen,
 }) {
   if (!isOpen) {
@@ -18,26 +18,26 @@ function CustomerDropDown({
   }
   return (
     <div className={styles["customer-dropdown"]}>
-      {customers
+      {suppliers
         .filter(
           (item) =>
             item?.phone.includes(keyword) ||
             item?.name.toLowerCase().includes(keyword.toLowerCase())
         )
-        ?.map((customer, index) => {
+        ?.map((supplier, index) => {
           return (
             <div
               key={index}
               className={styles["customer-preview"]}
               onClick={() => {
-                setSelectedCustomer(customer);
+                setSelectedSupplier(supplier);
                 setIsOpen(false);
               }}
             >
 
-              <h3>{customer?.name}</h3>
-              <p>{customer?.phone}</p>
-              <p>{customer?.balance}</p>
+              <h3>{supplier?.name}</h3>
+              <p>{supplier?.phone}</p>
+              {/* <p>{Supplier?.balance}</p> */}
             </div>
           );
         })}
@@ -92,14 +92,14 @@ function ProductDropDown({
 const Sales = () => {
   const router = useRouter();
 
-  const [customers, setCustomers] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
 
-  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [selectedSupplier, setSelectedSupplier] = useState(null);
   const [products, setProducts] = useState([]);
   const [timestamp, setTimestamp] = useState(null);
 
-  const [isCustomerDropDownOpen, setIsCustomerDropDownOpen] = useState(false);
-  const [customerSearchKeyword, setCustomerSearchKeyword] = useState("");
+  const [isSupplierDropDownOpen, setIsSupplierDropDownOpen] = useState(false);
+  const [supplierSearchKeyword, setSupplierSearchKeyword] = useState("");
 
   const [salesDiscount, setSalesDiscount] = useState(0);
   const [totalTax, setTotalTax] = useState(0);
@@ -181,7 +181,7 @@ const Sales = () => {
       grandTotal: grandTotal,
       paidAmount: paidAmount,
       due: due,
-      customer: selectedCustomer,
+      supplier: selectedSupplier,
       date: Date.now(),
     };
 
@@ -216,10 +216,10 @@ const Sales = () => {
     }
   }
 
-  async function fetchCustomers() {
-    let { data, error } = await supabase.from("customers").select("*");
+  async function fetchSuppliers() {
+    let { data, error } = await supabase.from("suppliers").select("*");
     if (data) {
-      setCustomers(data);
+      setSuppliers(data);
     }
   }
 
@@ -409,7 +409,7 @@ const Sales = () => {
   useEffect(() => {
     setTimestamp(Date.now());
     fetchProducts();
-    fetchCustomers();
+    fetchSuppliers();
   }, []);
 
 
@@ -442,38 +442,38 @@ const Sales = () => {
             <div>
               <input
                 className={styles["customer-search"]}
-                value={customerSearchKeyword}
+                value={supplierSearchKeyword}
                 type="text"
                 placeholder="Search Supplier"
                 onClick={(e) => {
-                  setIsCustomerDropDownOpen(true);
+                  setIsSupplierDropDownOpen(true);
                 }}
                 onChange={(e) => {
                   if (e.target.value === "") {
-                    setIsCustomerDropDownOpen(false);
-                    setCustomerSearchKeyword(e.target.value);
+                    setIsSupplierDropDownOpen(false);
+                    setSupplierSearchKeyword(e.target.value);
                   } else {
-                    setIsCustomerDropDownOpen(true);
-                    setCustomerSearchKeyword(e.target.value);
+                    setIsSupplierDropDownOpen(true);
+                    setSupplierSearchKeyword(e.target.value);
                   }
                 }}
               />
-              <CustomerDropDown
-                isOpen={isCustomerDropDownOpen}
-                customers={customers}
-                keyword={customerSearchKeyword}
-                setSelectedCustomer={setSelectedCustomer}
-                setIsOpen={setIsCustomerDropDownOpen}
+              <SupplierDropDown
+                isOpen={isSupplierDropDownOpen}
+                suppliers={suppliers}
+                keyword={supplierSearchKeyword}
+                setSelectedSupplier={setSelectedSupplier}
+                setIsOpen={setIsSupplierDropDownOpen}
               />
             </div>
-            {selectedCustomer && (
+            {selectedSupplier && (
               <div className={styles["sales-customer-details"]}>
-                <p>{`Name: ${selectedCustomer?.name}`}</p>
-                <p>{`Phone: ${selectedCustomer?.phone}`}</p>
+                <p>{`Name: ${selectedSupplier?.name}`}</p>
+                <p>{`Phone: ${selectedSupplier?.phone}`}</p>
                 <button
                   onClick={() => {
-                    setSelectedCustomer(null);
-                    setCustomerSearchKeyword("");
+                    setSelectedSupplier(null);
+                    setSupplierSearchKeyword("");
                   }}
                 >
                   x
@@ -484,7 +484,7 @@ const Sales = () => {
             <button
               className={styles["add-customer-button"]}
               onClick={() => {
-                router.push("/add-product");
+                router.push("/add-supplier");
               }}
             >
               +
@@ -592,7 +592,7 @@ const Sales = () => {
                   <div className={styles["product-info-box"]}>
                     <p>{getProductById(row?.productID)?.selling}</p>
                   </div>
-                  <div className={styles["product-info-box"]}>
+                  {/* <div className={styles["product-info-box"]}>
                     <input
                       placeholder="Discount"
                       value={`${getDiscount(index)}`}
@@ -605,7 +605,7 @@ const Sales = () => {
                         }
                       }}
                     />
-                  </div>
+                  </div> */}
                   <div className={styles["product-info-box"]}>
                     <p>{`${calculateTotal(
                       getProductById(row?.productID)?.selling,
@@ -685,12 +685,12 @@ const Sales = () => {
                 }}
               />
             </div>
-            {selectedCustomer && (
+            {/* {selectedSupplier && (
               <div className={styles["bottom-row"]}>
                 <p>Previous: </p>
-                <input placeholder="0.00" onChange={()=>{}} value={`${selectedCustomer?.balance}`} />
+                <input placeholder="0.00" onChange={()=>{}} value={`${selectedSupplier?.balance}`} />
               </div>
-            )}
+            )} */}
 
             <div className={styles["bottom-row"]}>
               <p>Grand Total: </p>

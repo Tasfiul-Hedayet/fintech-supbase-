@@ -14,6 +14,9 @@ const Customer = () => {
     if (data) {
       setCustomers(data);
     }
+    if(error){
+      console.log(error);
+    }
   }
 
   useEffect(() => {
