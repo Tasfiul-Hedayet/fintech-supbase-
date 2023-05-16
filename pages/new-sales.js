@@ -105,6 +105,7 @@ const Sales = () => {
   const [shippingCost, setShippingCost] = useState(0);
   const [paidAmount, setPaidAmount] = useState(0);
   const [totalDiscount, setTotalDiscount] = useState(0);
+  const [ledger, setLedger] = useState(null);
 
   const [productRows, setProductRows] = useState([
     {
@@ -247,6 +248,7 @@ const Sales = () => {
       outgoing: 0,
       date: date,
       invoice: salesID,
+      balance: ledger[ledger.length-1].balance + paidAmount
     };
     await supabase.from("cash_ledger").upsert([cashLedger]);
     // add the sales to the sales ledger
@@ -306,6 +308,17 @@ const Sales = () => {
     let { data, error } = await supabase.from("customers").select("*");
     if (data) {
       setCustomers(data);
+    }
+    if(error){
+      console.log(error);
+    }
+  }
+
+  async function fetchCashLedger() {
+    let { data, error } = await supabase.from("cash_ledger").select("*");
+    if (data) {
+      setLedger(data);
+      // console.log(data[]);
     }
     if(error){
       console.log(error);
@@ -502,6 +515,7 @@ const Sales = () => {
     setTimestamp(Date.now());
     fetchProducts();
     fetchCustomers();
+    fetchCashLedger();
   }, []);
 
   function getSelectedCustomerBalance() {
