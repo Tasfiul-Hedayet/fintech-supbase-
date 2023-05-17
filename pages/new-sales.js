@@ -248,7 +248,7 @@ const Sales = () => {
       outgoing: 0,
       date: date,
       invoice: salesID,
-      balance: ledger[ledger.length-1].balance + paidAmount
+      balance: ledger[ledger.length-1].balance + paidAmount,
     };
     await supabase.from("cash_ledger").upsert([cashLedger]);
     // add the sales to the sales ledger

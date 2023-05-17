@@ -79,7 +79,7 @@ const CustomerPayment = () => {
       .select("*")
       .eq("ID", "store");
     let store = storeData[0];
-    let newBalance = store.store_balance + paidAmount;
+    let newBalance = store?.store_balance + paidAmount;
     await supabase
       .from("store")
       .update({ store_balance: newBalance })

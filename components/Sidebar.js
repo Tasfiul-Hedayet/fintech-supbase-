@@ -36,7 +36,14 @@ const Sidebar = () => {
             toggle();
           }}
         ></div>
-        <div className={styles["title-link"]}>{"Brother's International"}</div>
+        <div
+          className={styles["title-link"]}
+          onClick={() => {
+            router.push("/dashboard");
+          }}
+        >
+          {"Brother's International"}
+        </div>
 
         <div
           className={styles["link"]}
