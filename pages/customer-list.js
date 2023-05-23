@@ -66,6 +66,9 @@ const Customer = () => {
           <div>
             <h3>Description</h3>
           </div>
+          <div>
+            <h3>Balance</h3>
+          </div>
         </div>
         <div className={styles["show-list"]}>
           {customers?.map((customer, index) => {
@@ -88,6 +91,9 @@ const Customer = () => {
                 </div>
                 <div>
                   <p>{customer.description}</p>
+                </div>
+                <div>
+                  <p>{customer.balance}</p>
                 </div>
               </React.Fragment>
             );

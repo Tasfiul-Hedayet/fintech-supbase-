@@ -67,6 +67,9 @@ const Customer = () => {
           <div>
             <h3>outgoing</h3>
           </div>
+          <div>
+            <h3>balance</h3>
+          </div>
 
         </div>
 
@@ -88,6 +91,9 @@ const Customer = () => {
                 </div>
                 <div>
                   <p>{product.outgoing}</p>
+                </div>
+                <div>
+                  <p>{product.balance}</p>
                 </div>
               </React.Fragment>
             );

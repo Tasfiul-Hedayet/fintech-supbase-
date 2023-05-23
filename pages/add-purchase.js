@@ -34,7 +34,6 @@ function SupplierDropDown({
                 setIsOpen(false);
               }}
             >
-
               <h3>{supplier?.name}</h3>
               <p>{supplier?.phone}</p>
               {/* <p>{Supplier?.balance}</p> */}
@@ -106,6 +105,7 @@ const Sales = () => {
   const [shippingCost, setShippingCost] = useState(0);
   const [paidAmount, setPaidAmount] = useState(0);
   const [totalDiscount, setTotalDiscount] = useState(0);
+  const [ledger, setLedger] = useState(null);
 
   const [productRows, setProductRows] = useState([
     {
@@ -191,6 +191,18 @@ const Sales = () => {
     };
     // save data to database here
 
+    let date = Date.now();
+
+    // add the paidAmount to the cash ledger
+    let cashLedger = {
+      incoming: 0,
+      outgoing: paidAmount,
+      date: date,
+      invoice: salesID,
+      balance: ledger[ledger.length - 1].balance - paidAmount,
+    };
+    await supabase.from("cash_ledger").upsert([cashLedger]);
+
     await supabase.from("invoice").upsert([savedData]);
     let print = confirm("Inserted. Do you want to print?");
     if (print) {
@@ -220,6 +232,17 @@ const Sales = () => {
     let { data, error } = await supabase.from("suppliers").select("*");
     if (data) {
       setSuppliers(data);
+    }
+  }
+
+  async function fetchCashLedger() {
+    let { data, error } = await supabase.from("cash_ledger").select("*");
+    if (data) {
+      setLedger(data);
+      // console.log(data[]);
+    }
+    if (error) {
+      console.log(error);
     }
   }
 
@@ -410,8 +433,8 @@ const Sales = () => {
     setTimestamp(Date.now());
     fetchProducts();
     fetchSuppliers();
+    fetchCashLedger();
   }, []);
-
 
   return (
     <div className={styles["page"]}>

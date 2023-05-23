@@ -51,6 +51,7 @@ const CustomerPayment = () => {
   const [customerSearchKeyword, setCustomerSearchKeyword] = useState("");
   const [paidAmount, setPaidAmount] = useState("");
   const [timestamp, setTimestamp] = useState(null);
+  const [ledger, setLedger] = useState(null);
 
   async function fetchCustomers() {
     let { data, error } = await supabase.from("customers").select("*");
@@ -63,16 +64,19 @@ const CustomerPayment = () => {
   }
 
   async function saveToCashLedger(salesID, date) {
-    // add the paidAmmoount to the cash ledger
+    // add the paid Amount to the cash ledger
     let cashLedger = {
       incoming: paidAmount,
       outgoing: 0,
       date: date,
       invoice: salesID,
+      balance: ledger[ledger.length-1].balance + paidAmount,
     };
     await supabase.from("cash_ledger").upsert([cashLedger]);
     // add the sales to the sales ledger
   }
+
+
   async function updateStoresBalance() {
     let { data: storeData, error } = await supabase
       .from("store")
@@ -106,20 +110,31 @@ const CustomerPayment = () => {
       .from("customers")
       .update({ balance: newBalance })
       .eq("ID", selectedCustomer?.ID);
-    // update the store balance
-    await updateStoresBalance();
-    let print = confirm("Inserted. Do you want to print?");
-    if (print) {
-      router.reload();
-      //router.push(`/print/${salesID}`);
-    } else {
-      router.reload();
+
+      let print = confirm("Inserted. Do you want to print?");
+      if (print)
+      {
+        router.push(`/print/${salesID}`);
+      } else {
+        router.reload();
+      }
+  }
+
+  async function fetchCashLedger() {
+    let { data, error } = await supabase.from("cash_ledger").select("*");
+    if (data) {
+      setLedger(data);
+      //console.log(data);
+    }
+    if(error){
+      console.log(error);
     }
   }
 
   useEffect(() => {
     setTimestamp(Date.now());
     fetchCustomers();
+    fetchCashLedger();
   }, []);
 
   return (

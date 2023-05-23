@@ -17,7 +17,10 @@ const Dashboard = () => {
     return (
       <div className={styles["page"]}>
         <Sidebar />
-        {JSON.stringify(user)}
+        {/* {JSON.stringify(user)} */}
+      <div>
+        
+      </div>
         
       </div>
     );

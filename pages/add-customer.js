@@ -11,24 +11,26 @@ const Customer = () => {
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const [balance, setBalance] = useState(0);
   const router = useRouter();
 
   async function saveCustomer() {
     console.log(name, phone, address, description);
-    let balance = 0;
+    // let balance = 0;
     alert("Alert");
 
     setLoading(true);
     // let { data, error } = await supabase.from('users').select('*').match({ username: username, password: password });
     await supabase
       .from("customers")
-      .insert([{ name, phone, address, description, balance }]);
+      .insert([{ name, phone, address, description, balance, }]);
     // clear input after submit
     setLoading(false);
     setName("");
     setAddress("");
     setPhone("");
     setDescription("");
+    setBalance(0);
   }
 
   if (isLoading) return <div>Loading ....</div>;
@@ -87,6 +89,7 @@ const Customer = () => {
               placeholder="Address"
             ></input>
           </div>
+
           <div>
             <label for="Description">Description:</label>
             <input
@@ -98,6 +101,19 @@ const Customer = () => {
               placeholder="Description"
             ></input>
           </div>
+
+          <div>
+            <label for="Balance">Due:</label>
+            <input
+              value={balance}
+              onChange={(e) => {
+                setBalance(e.target.value);
+              }}
+              type="text"
+              placeholder="Due"
+            ></input>
+          </div>
+
         </div>
         <div className={styles["save-button"]}>
         <button onClick={saveCustomer}>Save</button>

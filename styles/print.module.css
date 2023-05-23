@@ -6,6 +6,23 @@
     column-gap: 50px;
 }
 
+.document-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.customer-name{
+    padding: 20px;
+}
+
+.print-up{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
 .print{
     margin: 20px;
     padding-top: 20px;
@@ -14,8 +31,8 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .print > div {
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
+    border: 1px solid black;
+    /* border: 1px solid black; */
     padding: 10px;
 }
 
@@ -27,4 +44,25 @@
     grid-template-columns: 1fr;
     column-gap: 10px;
     row-gap: 10px;
+}
+
+.powered-by{
+    text-align: center;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.buttons > button{
+    padding: 15px 20px;
+    margin-left: 20px;
+    border-radius: 20px;
+}
+
+.buttons > button:hover{
+    background-color: green;
 }

@@ -242,7 +242,7 @@ const Sales = () => {
       .update({ balance: balance })
       .eq("ID", selectedCustomer?.ID);
 
-    // add the paidAmmoount to the cash ledger
+    // add the paidAmount to the cash ledger
     let cashLedger = {
       incoming: paidAmount,
       outgoing: 0,
@@ -278,7 +278,8 @@ const Sales = () => {
     await supabase.from("sales_ledger").upsert([salesLedger]);
 
     let print = confirm("Inserted. Do you want to print?");
-    if (print) {
+    if (print)
+    {
       router.push(`/print/${salesID}`);
     } else {
       router.reload();
