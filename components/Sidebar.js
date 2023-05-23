@@ -72,33 +72,6 @@ const Sidebar = () => {
           Purchase Invoice
         </div>
 
-        <div
-          className={styles["link"]}
-          onClick={() => {
-            router.push("/customer_ledger");
-          }}
-        >
-          Customer Ledger
-        </div>
-
-        <div
-          className={styles["link"]}
-          onClick={() => {
-            router.push("/cash_ledger");
-          }}
-        >
-          Cash Ledger
-        </div>
-
-        <div
-          className={styles["link"]}
-          onClick={() => {
-            router.push("/sales_ledger");
-          }}
-        >
-          Sales Ledger
-        </div>
-
         {/* <div className={styles['link']} onClick={() => { router.push('/payment') }}>
                     Suppplier Payment
                 </div> */}
@@ -128,6 +101,33 @@ const Sidebar = () => {
           }}
         >
           Customer payment
+        </div>
+
+        <div
+          className={styles["link"]}
+          onClick={() => {
+            router.push("/customer_ledger");
+          }}
+        >
+          Customer Ledger
+        </div>
+
+        <div
+          className={styles["link"]}
+          onClick={() => {
+            router.push("/cash_ledger");
+          }}
+        >
+          Cash Ledger
+        </div>
+
+        <div
+          className={styles["link"]}
+          onClick={() => {
+            router.push("/sales_ledger");
+          }}
+        >
+          Sales Ledger
         </div>
 
         <div className={styles["link"]} onClick={logout}>
