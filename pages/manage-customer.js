@@ -144,7 +144,6 @@ const Supplier = () => {
       <Sidebar />
       <div className={styles["top-bar"]}>
         <div className={styles["top-title"]}>
-          <div></div>
           <h1>Customers</h1>
         </div>
         <div className={styles["nav-status"]}>Home/Customers/Manage Customers</div>

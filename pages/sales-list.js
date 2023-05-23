@@ -2,6 +2,7 @@ import { supabase } from "@/lib/client";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/sales-list.module.css";
+import Sidebar from "@/components/Sidebar";
 
 const SalesList = () => {
   let [sales, setSales] = useState([]);
@@ -27,10 +28,30 @@ const SalesList = () => {
 
   return (
     <div className={styles["page"]}>
-      <div className={styles["top-title"]}>
-        <h1>Sales List</h1>
+      <Sidebar />
+      <div className={styles["top-bar"]}>
+        <div className={styles["top-title"]}>
+          <h1>Sales list</h1>
+        </div>
+        <div className={styles["nav-status"]}>Home/Sales/Sales list</div>
       </div>
-      <div className={styles["nav-status"]}>Home/Sales/Sales List</div>
+
+      <div className={styles["nav-button"]}>
+        <button
+          onClick={() => {
+            router.push("/new-sales");
+          }}
+        >
+          Sales{" "}
+        </button>
+        <button
+          onClick={() => {
+            router.push("/sales-list");
+          }}
+        >
+          Sales list{" "}
+        </button>
+      </div>
       <div className={styles["label"]}>
         <div>
           <h3>Sl</h3>
