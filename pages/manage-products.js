@@ -198,10 +198,9 @@ const Customer = () => {
       <Sidebar />
       <div className={styles["top-bar"]}>
         <div className={styles["top-title"]}>
-          <div></div>
           <h1>Product</h1>
         </div>
-        <div className={styles["nav-status"]}>Home/Product/Product list</div>
+        <div className={styles["nav-status"]}>Home/Product/Manage Product</div>
       </div>
 
       <div className={styles["nav-button"]}>

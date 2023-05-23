@@ -28,7 +28,7 @@ const Customer = () => {
           <div></div>
           <h1>Cash ledger</h1>
         </div>
-        <div className={styles["nav-status"]}>Home/cash_ledger</div>
+        <div className={styles["nav-status"]}>Home/Cash ledger</div>
       </div>
 
       <div className={styles["nav-button"]}>
