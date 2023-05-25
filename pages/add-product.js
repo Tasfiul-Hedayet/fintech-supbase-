@@ -4,6 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/add-product.module.css";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 function SupplierDropDown({
   isOpen,
@@ -50,7 +51,6 @@ const Product = () => {
   const [quantity, setQuantity] = useState("");
   const [purchase, setPurchase] = useState("");
   const [selling, setSelling] = useState("");
-  const [isLoading, setLoading] = useState(false);
   const router = useRouter();
 
   const [suppliers, setSuppliers] = useState([]);
@@ -82,7 +82,7 @@ const Product = () => {
       selling
     );
 
-    setLoading(true);
+    toast.success("Data Inserted");
     // let { data, error } = await supabase.from('users').select('*').match({ username: username, password: password });
     await supabase.from("product").insert([
       {
@@ -97,7 +97,6 @@ const Product = () => {
       },
     ]);
     // clear input after submit
-    setLoading(false);
     setCategory("");
     setSubCategory("");
     setBrand("");
@@ -108,7 +107,6 @@ const Product = () => {
     setSelling("");
   }
 
-  if (isLoading) return <div>Loading ....</div>;
 
   return (
     <div className={styles["page"]}>

@@ -11,7 +11,6 @@ const Customer = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
-  const [isLoading, setLoading] = useState(false);
   const router = useRouter();
 
   async function saveSupplier() {
@@ -20,20 +19,18 @@ const Customer = () => {
     toast.success("Data Inserted");
 
 
-    setLoading(true);
     // let { data, error } = await supabase.from('users').select('*').match({ username: username, password: password });
     await supabase
       .from("suppliers")
       .insert([{ name, phone, address, description }]);
     // clear input after submit
-    setLoading(false);
+
     setName("");
     setAddress("");
     setPhone("");
     setDescription("");
   }
 
-  if (isLoading) return <div>Loading ....</div>;
 
   return (
     <div className={styles["page"]}>

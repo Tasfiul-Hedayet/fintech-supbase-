@@ -12,7 +12,6 @@ const Customer = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
-  const [isLoading, setLoading] = useState(false);
   const [balance, setBalance] = useState(0);
   const router = useRouter();
 
@@ -22,13 +21,13 @@ const Customer = () => {
     // alert("Data Inserted");
     toast.success("Data Inserted");
 
-    setLoading(true);
+
     // let { data, error } = await supabase.from('users').select('*').match({ username: username, password: password });
     await supabase
       .from("customers")
       .insert([{ name, phone, address, description, balance, }]);
     // clear input after submit
-    setLoading(false);
+
     setName("");
     setAddress("");
     setPhone("");
@@ -36,7 +35,6 @@ const Customer = () => {
     setBalance(0);
   }
 
-  if (isLoading) return <div>Loading ....</div>;
 
   return (
     <div className={styles["page"]}>
