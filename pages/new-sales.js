@@ -280,8 +280,9 @@ const Sales = () => {
       invoice: salesID,
     };
     await supabase.from("sales_ledger").upsert([salesLedger]);
-
-    let print = confirm("Inserted. Do you want to print?");
+    
+    alert("Data Inserted.")
+    let print = confirm("Do you want to print?");
     if (print)
     {
       router.push(`/print/${salesID}`);
