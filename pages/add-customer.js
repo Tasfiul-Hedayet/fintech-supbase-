@@ -17,7 +17,7 @@ const Customer = () => {
   async function saveCustomer() {
     console.log(name, phone, address, description);
     // let balance = 0;
-    alert("Alert");
+    alert("Data Inserted");
 
     setLoading(true);
     // let { data, error } = await supabase.from('users').select('*').match({ username: username, password: password });
