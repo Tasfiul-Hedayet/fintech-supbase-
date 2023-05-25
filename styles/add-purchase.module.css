@@ -297,6 +297,10 @@
     cursor: pointer;
   }
   
+  .buttons button:hover{
+    background-color: green;
+  }
+
   @media only screen and (max-width: 412px) {
     .add-input {
       display: grid;

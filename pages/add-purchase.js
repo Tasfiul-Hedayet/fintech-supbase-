@@ -199,11 +199,12 @@ const Sales = () => {
       outgoing: paidAmount,
       date: date,
       invoice: salesID,
-      balance: ledger[ledger.length - 1].balance - paidAmount,
+      balance: ledger[ledger.length - 1]?.balance - paidAmount,
     };
     await supabase.from("cash_ledger").upsert([cashLedger]);
 
     await supabase.from("invoice").upsert([savedData]);
+    alert("Do you want to continue");
     let print = confirm("Inserted. Do you want to print?");
     if (print) {
       router.push(`/print/${salesID}`);
