@@ -234,16 +234,21 @@ const Sales = () => {
     if (data) {
       setSuppliers(data);
     }
+    if(error){
+      console.log(error);
+      alert(error);
+    }
   }
 
   async function fetchCashLedger() {
     let { data, error } = await supabase.from("cash_ledger").select("*");
-    if (data) {
+    if(data) {
       setLedger(data);
       // console.log(data[]);
     }
     if (error) {
       console.log(error);
+      alert(error)
     }
   }
 

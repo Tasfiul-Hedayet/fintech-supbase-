@@ -242,31 +242,35 @@ const Sales = () => {
       .update({ balance: balance })
       .eq("ID", selectedCustomer?.ID);
 
+      let salesLedgerBalance = ledger[ledger.length-1]?.balance;
+      let salesLedgerCredit = grandTotal - selectedCustomer?.balance;
+      let newSalesLedgerBalance = salesLedgerCredit + salesLedgerBalance;
+
     // add the paidAmount to the cash ledger
     let cashLedger = {
       incoming: paidAmount,
       outgoing: 0,
       date: date,
       invoice: salesID,
-      balance: ledger[ledger.length-1].balance + paidAmount,
+      balance: ledger[ledger.length-1]?.balance + paidAmount,
     };
     await supabase.from("cash_ledger").upsert([cashLedger]);
     // add the sales to the sales ledger
 
     // get from sales table
-    let { data: storeData, error } = await supabase
-      .from("store")
-      .select("*")
-      .eq("ID", "store");
-    let store = storeData[0];
-    let salesLedgerBalance = store?.store_balance;
-    let salesLedgerCredit = grandTotal - selectedCustomer?.balance;
-    let newSalesLedgerBalance = salesLedgerCredit + salesLedgerBalance;
+    // let { data: storeData, error } = await supabase
+    //   .from("store")
+    //   .select("*")
+    //   .eq("ID", "store");
+    // let store = storeData[0];
+    // let salesLedgerBalance = store?.store_balance;
+    // let salesLedgerCredit = grandTotal - selectedCustomer?.balance;
+    // let newSalesLedgerBalance = salesLedgerCredit + salesLedgerBalance;
 
-    await supabase
-      .from("store")
-      .update({ store_balance: newSalesLedgerBalance })
-      .eq("ID", "store");
+    // await supabase
+    //   .from("store")
+    //   .update({ store_balance: newSalesLedgerBalance })
+    //   .eq("ID", "store");
 
     let salesLedger = {
       debit: 0,
