@@ -90,7 +90,7 @@ function ProductDropDown({
 
 const Sales = () => {
   const router = useRouter();
-
+  const[isloading, setLoading] = useState(false);
   const [suppliers, setSuppliers] = useState([]);
 
   const [selectedSupplier, setSelectedSupplier] = useState(null);
@@ -192,7 +192,7 @@ const Sales = () => {
     // save data to database here
 
     let date = Date.now();
-
+    setLoading(true);
     // add the paidAmount to the cash ledger
     let cashLedger = {
       incoming: 0,
@@ -202,10 +202,10 @@ const Sales = () => {
       balance: ledger[ledger.length - 1]?.balance - paidAmount,
     };
     await supabase.from("cash_ledger").upsert([cashLedger]);
-
+    alert("Data Inserted.")
+    setLoading(false);
     await supabase.from("invoice").upsert([savedData]);
 
-    alert("Data Inserted.")
     let print = confirm("Do you want to print?");
     if (print) {
       router.push(`/print/${salesID}`);
@@ -443,6 +443,8 @@ const Sales = () => {
     fetchCashLedger();
   }, []);
 
+
+  if(isloading) return <div>Loading.....</div>
   return (
     <div className={styles["page"]}>
       <Sidebar />

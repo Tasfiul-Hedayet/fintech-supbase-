@@ -92,6 +92,7 @@ const Sales = () => {
   const router = useRouter();
 
   const [customers, setCustomers] = useState([]);
+  const [isLoading, setLoading] = useState(false);
   
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [products, setProducts] = useState([]);
@@ -182,7 +183,7 @@ const Sales = () => {
     };
 
     // save data to database here
-
+    setLoading(true);
     await supabase.from("invoice").upsert([savedData]);
 
     let credit = 0,
@@ -279,9 +280,13 @@ const Sales = () => {
       date: date,
       invoice: salesID,
     };
-    await supabase.from("sales_ledger").upsert([salesLedger]);
     
     alert("Data Inserted.")
+    setLoading(false);
+    await supabase.from("sales_ledger").upsert([salesLedger]);
+
+    
+
     let print = confirm("Do you want to print?");
     if (print)
     {
@@ -528,6 +533,8 @@ const Sales = () => {
     console.log("balance koi", selectedCustomer);
     return selectedCustomer?.balance;
   }
+
+  if (isLoading) return <div>Loading ....</div>;
 
   return (
     <div className={styles["page"]}>
