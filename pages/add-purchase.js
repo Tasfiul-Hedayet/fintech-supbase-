@@ -203,14 +203,14 @@ const Sales = () => {
     };
     await supabase.from("cash_ledger").upsert([cashLedger]);
     alert("Data Inserted.")
-    setLoading(false);
     await supabase.from("invoice").upsert([savedData]);
 
     let print = confirm("Do you want to print?");
+    setLoading(false);
     if (print) {
       router.push(`/print/${salesID}`);
     } else {
-      router.reload();
+      router.push('/add-purchase')
     }
   }
 
@@ -443,8 +443,8 @@ const Sales = () => {
     fetchCashLedger();
   }, []);
 
-
   if(isloading) return <div>Loading.....</div>
+
   return (
     <div className={styles["page"]}>
       <Sidebar />

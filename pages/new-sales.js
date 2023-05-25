@@ -282,12 +282,12 @@ const Sales = () => {
     };
     
     alert("Data Inserted.")
-    setLoading(false);
     await supabase.from("sales_ledger").upsert([salesLedger]);
 
     
 
     let print = confirm("Do you want to print?");
+    setLoading(false);
     if (print)
     {
       router.push(`/print/${salesID}`);
