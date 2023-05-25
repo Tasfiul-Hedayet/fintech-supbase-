@@ -15,14 +15,33 @@ const Dashboard = () => {
     return <UnAuthenticated />;
   } else {
     return (
+      <>
+      <Sidebar />
       <div className={styles["page"]}>
-        <Sidebar />
         {/* {JSON.stringify(user)} */}
-      <div>
-        
+        {/* cart design start here */}
+      <div className={styles["cart"]}>
+
+      <div className={styles["box1"]}>
+      <p>Hello</p>
+      </div>
+
+      <div className={styles["box2"]}>
+      <p>kemon</p>
+      </div>
+
+      <div className={styles["box3"]}>
+      <p>acho</p>
+      </div>
+
+      <div className={styles["box4"]}>
+      <p>tumi</p> 
+      </div>
+
       </div>
         
       </div>
+      </>
     );
   }
 };

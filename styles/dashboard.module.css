@@ -1,6 +1,59 @@
 .page {
-  height: 100vh;
+  min-height: 100vh;
+  max-height: max-content;
   width: 100vw;
   background-color: #ffffff;
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00ffff;
+  height: 30vh;
+  gap:20px;
+  padding: 20px;
+}
+
+.box1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  height: 10vh;
+  width: 10vh;
+  background-color: blueviolet;
+}
+
+.box2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  height: 10vh;
+  width: 10vh;
+  background-color: rgb(150, 118, 180);
+}
+
+.box3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  height: 10vh;
+  width: 10vh;
+  background-color: rgb(118, 123, 180);
+}
+
+.box4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  height: 10vh;
+  width: 10vh;
+  background-color: rgb(118, 180, 137);
 }

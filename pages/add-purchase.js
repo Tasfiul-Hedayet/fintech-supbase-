@@ -5,6 +5,8 @@ import is_numeric from "@/utils/isNumeric";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/add-purchase.module.css";
+import { toast } from "react-toastify";
+
 
 function SupplierDropDown({
   isOpen,
@@ -90,7 +92,7 @@ function ProductDropDown({
 
 const Sales = () => {
   const router = useRouter();
-  const[isloading, setLoading] = useState(false);
+  const [isloading, setLoading] = useState(false);
   const [suppliers, setSuppliers] = useState([]);
 
   const [selectedSupplier, setSelectedSupplier] = useState(null);
@@ -202,7 +204,7 @@ const Sales = () => {
       balance: ledger[ledger.length - 1]?.balance - paidAmount,
     };
     await supabase.from("cash_ledger").upsert([cashLedger]);
-    alert("Data Inserted.")
+    toast.success("Data Inserted");
     await supabase.from("invoice").upsert([savedData]);
 
     let print = confirm("Do you want to print?");
@@ -210,7 +212,7 @@ const Sales = () => {
     if (print) {
       router.push(`/print/${salesID}`);
     } else {
-      router.push('/add-purchase')
+      router.push("/add-purchase");
     }
   }
 
@@ -235,7 +237,7 @@ const Sales = () => {
     if (data) {
       setSuppliers(data);
     }
-    if(error){
+    if (error) {
       console.log(error);
       alert(error);
     }
@@ -243,13 +245,13 @@ const Sales = () => {
 
   async function fetchCashLedger() {
     let { data, error } = await supabase.from("cash_ledger").select("*");
-    if(data) {
+    if (data) {
       setLedger(data);
       // console.log(data[]);
     }
     if (error) {
       console.log(error);
-      alert(error)
+      alert(error);
     }
   }
 
@@ -295,7 +297,8 @@ const Sales = () => {
 
   function removeProductRow(index) {
     if (productRows?.length <= 1) {
-      alert("Can't delete default row");
+      // alert("Can't delete default row");
+      toast.warn("Can't delete default row");
       return;
     }
 
@@ -443,7 +446,7 @@ const Sales = () => {
     fetchCashLedger();
   }, []);
 
-  if(isloading) return <div>Loading.....</div>
+  if (isloading) return <div>Loading.....</div>;
 
   return (
     <div className={styles["page"]}>

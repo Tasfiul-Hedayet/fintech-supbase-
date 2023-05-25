@@ -5,6 +5,7 @@ import is_numeric from "@/utils/isNumeric";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/new-sales.module.css";
+import { toast } from "react-toastify";
 
 function CustomerDropDown({
   isOpen,
@@ -281,7 +282,8 @@ const Sales = () => {
       invoice: salesID,
     };
     
-    alert("Data Inserted.")
+    // alert("Data Inserted.")
+    toast.success("Data Inserted");
     await supabase.from("sales_ledger").upsert([salesLedger]);
 
     
@@ -378,7 +380,8 @@ const Sales = () => {
 
   function removeProductRow(index) {
     if (productRows?.length <= 1) {
-      alert("Can't delete default row");
+      // alert("Can't delete default row");
+      toast.warn("Can't delete default row");
       return;
     }
 

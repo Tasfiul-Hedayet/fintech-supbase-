@@ -4,6 +4,8 @@ import Sidebar from "@/components/Sidebar";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/add-customer.module.css";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+
 
 const Customer = () => {
   const [name, setName] = useState("");
@@ -17,7 +19,8 @@ const Customer = () => {
   async function saveCustomer() {
     console.log(name, phone, address, description);
     // let balance = 0;
-    alert("Data Inserted");
+    // alert("Data Inserted");
+    toast.success("Data Inserted");
 
     setLoading(true);
     // let { data, error } = await supabase.from('users').select('*').match({ username: username, password: password });
