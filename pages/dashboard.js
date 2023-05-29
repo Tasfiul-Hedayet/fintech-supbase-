@@ -42,22 +42,28 @@ const Dashboard = () => {
               {fetchCashLedger && (
                 <div>
                   {cashLedger.length > 0 && (
-                    <p>Cash-{cashLedger[cashLedger.length - 1].balance}</p>
+                    <p>Total Store Cash: {cashLedger[cashLedger.length - 1].balance}</p>
                   )}
                 </div>
               )}
             </div>
 
             <div className={styles["box2"]}>
-              <p></p>
+              <p>
+                 Store value - 
+              </p>
             </div>
 
             <div className={styles["box3"]}>
-              <p></p>
+              <p> 
+                  Products - 
+              </p>
             </div>
 
             <div className={styles["box4"]}>
-              <p></p>
+              <p>
+                Out of stock
+              </p>
             </div>
           </div>
         </div>
