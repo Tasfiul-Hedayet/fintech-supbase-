@@ -85,7 +85,7 @@
 @media only screen and (max-width: 412px){
   .page{
     margin-bottom: 20px;
-    padding: 50px;
+    padding: 100px;
   }
   .cart{
     display: grid;

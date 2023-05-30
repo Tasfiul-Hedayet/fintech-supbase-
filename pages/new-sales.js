@@ -108,6 +108,8 @@ const Sales = () => {
   const [paidAmount, setPaidAmount] = useState(0);
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [ledger, setLedger] = useState(null);
+  
+  let soldQuantity = 0;
 
   const [productRows, setProductRows] = useState([
     {
@@ -133,6 +135,11 @@ const Sales = () => {
     return `${timestamp}${uuid}`.toUpperCase();
   }
 
+  function reduceQuantity(availableQuantity, soldQuantity)
+  {
+    return availableQuantity-soldQuantity;
+  } 
+
   async function saveSalesInvoice() {
     const products = [];
 
@@ -156,7 +163,8 @@ const Sales = () => {
         discount: productRows[i].discount,
         total: total,
       };
-      products.push(product);
+
+      Array.push(product);
     }
 
     let due =
@@ -166,7 +174,7 @@ const Sales = () => {
     let grandTotal = calculateGrandTotal();
     let salesID = UniqueSalesID();
     let data = {
-      products: products,
+      Array: products,
       salesDiscount: salesDiscount,
       totalDiscount: totalDiscount,
       totalTax: totalTax,
@@ -411,6 +419,7 @@ const Sales = () => {
       if (i === index) {
         let newRow = productRows[i];
         newRow.quantity = value;
+        soldQuantity = newRow.quantity;
         newRows.push(newRow);
       } else newRows.push(productRows[i]);
     }

@@ -7,6 +7,7 @@ import { supabase } from "@/lib/client";
 const Dashboard = () => {
   let [user, setUser] = useState(null);
   const [cashLedger, setcashLedger] = useState([]);
+  const [products, setProducts] = useState([]);
 
   async function fetchCashLedger() {
     let { data, error } = await supabase.from("cash_ledger").select("*");
@@ -18,14 +19,31 @@ const Dashboard = () => {
     }
   }
 
+  async function fetchProducts() {
+    let { data, error } = await supabase.from("product").select("*");
+    if (data) {
+      setProducts(data);
+    }
+    if(error){
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     fetchCashLedger();
+    fetchProducts();
+    console.log(totalQuantity);
   }, []);
 
   useEffect(() => {
     let isLoggedIn = JSON.parse(localStorage.getItem("user")); // should be user
     setUser(isLoggedIn);
   }, []);
+
+
+  const totalQuantity = products.map((element)=>{
+    return element.quantity;
+  })
 
   if (user === null) {
     return <UnAuthenticated />;
@@ -55,9 +73,13 @@ const Dashboard = () => {
             </div>
 
             <div className={styles["box3"]}>
-              <p> 
-                  Products - 
-              </p>
+            {fetchProducts && (
+                <div>
+                  {products.map > 0 && (
+                    <p>product </p>
+                  )}
+                </div>
+              )}
             </div>
 
             <div className={styles["box4"]}>
