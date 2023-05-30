@@ -8,7 +8,25 @@ const Dashboard = () => {
   let [user, setUser] = useState(null);
   const [cashLedger, setcashLedger] = useState([]);
   const [products, setProducts] = useState([]);
+  
+  
+  const totalQuantity = products.map((element)=>{
+    return element.quantity;
+  })
 
+  const sum = totalQuantity.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+  const outOfStock = []   
+  products.map((el, index) => {
+    if(el.quantity === 0){
+      outOfStock.push(el.quantity);
+    }
+  })
+
+  console.log(outOfStock);
+
+  
+  
   async function fetchCashLedger() {
     let { data, error } = await supabase.from("cash_ledger").select("*");
     if (data) {
@@ -32,7 +50,6 @@ const Dashboard = () => {
   useEffect(() => {
     fetchCashLedger();
     fetchProducts();
-    console.log(totalQuantity);
   }, []);
 
   useEffect(() => {
@@ -41,9 +58,6 @@ const Dashboard = () => {
   }, []);
 
 
-  const totalQuantity = products.map((element)=>{
-    return element.quantity;
-  })
 
   if (user === null) {
     return <UnAuthenticated />;
@@ -68,23 +82,22 @@ const Dashboard = () => {
 
             <div className={styles["box2"]}>
               <p>
-                 Store value - 
+                 Store value - {outOfStock? outOfStock.length : 0}
               </p>
             </div>
 
             <div className={styles["box3"]}>
             {fetchProducts && (
                 <div>
-                  {products.map > 0 && (
-                    <p>product </p>
-                  )}
+                    <p>product: {sum? sum: null}</p>
+                  
                 </div>
               )}
             </div>
 
             <div className={styles["box4"]}>
               <p>
-                Out of stock
+                Out of stock: {outOfStock? outOfStock.length : 0}
               </p>
             </div>
           </div>
