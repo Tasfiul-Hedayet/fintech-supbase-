@@ -154,6 +154,20 @@ const Sales = () => {
           productRows[i].discount) /
           100;
 
+      let remainingProduct = productFromDB.quantity-productRows[i].quantity;
+      console.log(typeof(productFromDB.ID));
+
+      const { data, error } = await supabase
+            .from('product')
+            .update({ quantity: remainingProduct })
+            .eq('ID', productFromDB?.ID)
+
+            if (error) {
+            console.error(error);
+            }
+
+            console.log('Update successful:', data);
+
       let product = {
         ID: productFromDB.ID,
         name: productFromDB.product,
@@ -164,7 +178,7 @@ const Sales = () => {
         total: total,
       };
 
-      Array.push(product);
+      products.push(product);
     }
 
     let due =
